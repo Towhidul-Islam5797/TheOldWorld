@@ -1,0 +1,25 @@
+#region Summary
+/// <summary>
+/// BuildingConfig is a ScriptableObject that holds configuration data for different types of buildings in the game.
+/// It includes the building's name, type, maximum level, and the time required to upgrade to the next level.
+/// This allows for easy creation and management of building types through the Unity Editor, enabling designers to tweak building parameters without modifying code.
+/// Example usage:
+/// 1. Create a new BuildingConfig asset in the Unity Editor.
+/// 2. Set the buildingName to "Farm", buildingType to BuildingType.Farm, maxLevel to 5, and upgradeTimeSeconds to 60.
+/// 3. Use this BuildingConfig when creating a new BuildingState for a farm building in the game.
+/// This design promotes separation of data and logic, making the codebase more maintainable and flexible.
+/// Note: BuildingType is an enum that should be defined elsewhere in the codebase, representing different categories of buildings (e.g., HQ, Farm, Barracks).
+/// </summary>
+#endregion
+#region Phase 1 Sprint 3 - Building Configuration
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "BuildingConfig", menuName = "TheOldWorld/BuildingConfig")]
+public class BuildingConfig : ScriptableObject
+{
+    public string buildingName;
+    public BuildingType buildingType;
+    public int maxLevel;
+    public float upgradeTimeSeconds;
+}
+#endregion
