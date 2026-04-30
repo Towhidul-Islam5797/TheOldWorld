@@ -16,8 +16,87 @@
 ///         and it assumes that these classes are implemented with the necessary properties and methods to support building management operations.
 #endregion
 #region Phase 1 Sprint 3 - Building Manager Implementation
-using UnityEngine;
+//using UnityEngine;
+//using System.Collections.Generic;
+
+//public class BuildingManager : MonoBehaviour
+//{
+//    public static BuildingManager Instance;
+
+//    private TileGrid grid;
+//    private TileGridRenderer gridRenderer;
+//    private List<BuildingState> allBuildings = new List<BuildingState>();
+
+//    void Awake()
+//    {
+//        Instance = this;
+//    }
+
+//    void Start()
+//    {
+//        gridRenderer = FindFirstObjectByType<TileGridRenderer>();
+//        grid = gridRenderer.Grid;
+//    }
+
+//    public int GetHQLevel()
+//    {
+//        foreach (BuildingState b in allBuildings)
+//        {
+//            if (b.config.buildingType == BuildingType.HQ)
+//                return b.level;
+//        }
+//        return 0;
+//    }
+
+//    public bool PlaceBuilding(BuildingConfig config, int x, int y)
+//    {
+//        TileData tile = grid.GetTile(x, y);
+//        if (tile == null || tile.tileType != TileType.Empty)
+//        {
+//            Debug.Log("Cannot place: tile unavailable at (" + x + ", " + y + ")");
+//            return false;
+//        }
+
+//        BuildingState building = new BuildingState(config, x, y);
+//        tile.tileType = TileType.Occupied;
+//        tile.occupant = building;
+//        allBuildings.Add(building);
+//        gridRenderer.RefreshTile(x, y);
+
+//        Debug.Log("Placed " + config.buildingName + " at (" + x + ", " + y + ")");
+//        return true;
+//    }
+
+//    public bool UpgradeBuilding(int x, int y)
+//    {
+//        TileData tile = grid.GetTile(x, y);
+//        if (tile == null || tile.occupant == null) return false;
+
+//        BuildingState building = tile.occupant;
+//        int hqLevel = GetHQLevel();
+
+//        if (!building.CanUpgrade(hqLevel))
+//        {
+//            Debug.Log("Cannot upgrade " + building.config.buildingName + " level " + building.level);
+//            return false;
+//        }
+
+//        building.StartUpgrade();
+//        Debug.Log("Upgrading " + building.config.buildingName + " to level " + (building.level + 1));
+//        return true;
+//    }
+
+//    void Update()
+//    {
+//        foreach (BuildingState b in allBuildings)
+//            b.CheckUpgradeComplete();
+//    }
+//}
+#endregion
+#region Phase 2 Sprint 4 - Building Manager Extended
 using System.Collections.Generic;
+using System.Resources;
+using UnityEngine;
 
 public class BuildingManager : MonoBehaviour
 {
@@ -48,6 +127,11 @@ public class BuildingManager : MonoBehaviour
         return 0;
     }
 
+    public List<BuildingState> GetAllBuildings()
+    {
+        return allBuildings;
+    }
+
     public bool PlaceBuilding(BuildingConfig config, int x, int y)
     {
         TileData tile = grid.GetTile(x, y);
@@ -56,6 +140,14 @@ public class BuildingManager : MonoBehaviour
             Debug.Log("Cannot place: tile unavailable at (" + x + ", " + y + ")");
             return false;
         }
+
+        if (!ResourceManager.Instance.CanAfford(config.placementCost))
+        {
+            Debug.Log("Cannot place: not enough resources");
+            return false;
+        }
+
+        ResourceManager.Instance.Deduct(config.placementCost);
 
         BuildingState building = new BuildingState(config, x, y);
         tile.tileType = TileType.Occupied;
@@ -81,6 +173,13 @@ public class BuildingManager : MonoBehaviour
             return false;
         }
 
+        if (!ResourceManager.Instance.CanAfford(building.config.upgradeCost))
+        {
+            Debug.Log("Cannot upgrade: not enough resources");
+            return false;
+        }
+
+        ResourceManager.Instance.Deduct(building.config.upgradeCost);
         building.StartUpgrade();
         Debug.Log("Upgrading " + building.config.buildingName + " to level " + (building.level + 1));
         return true;

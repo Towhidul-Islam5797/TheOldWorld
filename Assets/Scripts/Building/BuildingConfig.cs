@@ -12,6 +12,18 @@
 /// </summary>
 #endregion
 #region Phase 1 Sprint 3 - Building Configuration
+//using UnityEngine;
+
+//[CreateAssetMenu(fileName = "BuildingConfig", menuName = "TheOldWorld/BuildingConfig")]
+//public class BuildingConfig : ScriptableObject
+//{
+//    public string buildingName;
+//    public BuildingType buildingType;
+//    public int maxLevel;
+//    public float upgradeTimeSeconds;
+//}
+#endregion
+#region Phase 2 Sprint 4 - Building Configuration Extended
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "BuildingConfig", menuName = "TheOldWorld/BuildingConfig")]
@@ -21,5 +33,8 @@ public class BuildingConfig : ScriptableObject
     public BuildingType buildingType;
     public int maxLevel;
     public float upgradeTimeSeconds;
+    public ResourceCost upgradeCost;
+    public ResourceCost placementCost;
+    public float productionPerHour;
 }
 #endregion
