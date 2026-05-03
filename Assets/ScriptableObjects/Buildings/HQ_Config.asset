@@ -16,3 +16,17 @@ MonoBehaviour:
   buildingType: 0
   maxLevel: 5
   upgradeTimeSeconds: 10
+  upgradeCost:
+    food: 0
+    wood: 0
+    stone: 0
+    gold: 0
+  placementCost:
+    food: 0
+    wood: 0
+    stone: 0
+    gold: 0
+  productionPerHour: 0
+  buildingSprite: {fileID: 21300000, guid: 2a1b94a27f55c9641bc8022381508cec, type: 3}
+  footprintWidth: 2
+  footprintHeight: 2
