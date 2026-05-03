@@ -94,6 +94,105 @@
 //}
 #endregion
 #region Phase 2 Sprint 4 - Building Manager Extended
+//using System.Collections.Generic;
+//using System.Resources;
+//using UnityEngine;
+
+//public class BuildingManager : MonoBehaviour
+//{
+//    public static BuildingManager Instance;
+
+//    private TileGrid grid;
+//    private TileGridRenderer gridRenderer;
+//    private List<BuildingState> allBuildings = new List<BuildingState>();
+
+//    void Awake()
+//    {
+//        Instance = this;
+//    }
+
+//    void Start()
+//    {
+//        gridRenderer = FindFirstObjectByType<TileGridRenderer>();
+//        grid = gridRenderer.Grid;
+//    }
+
+//    public int GetHQLevel()
+//    {
+//        foreach (BuildingState b in allBuildings)
+//        {
+//            if (b.config.buildingType == BuildingType.HQ)
+//                return b.level;
+//        }
+//        return 0;
+//    }
+
+//    public List<BuildingState> GetAllBuildings()
+//    {
+//        return allBuildings;
+//    }
+
+//    public bool PlaceBuilding(BuildingConfig config, int x, int y)
+//    {
+//        TileData tile = grid.GetTile(x, y);
+//        if (tile == null || tile.tileType != TileType.Empty)
+//        {
+//            Debug.Log("Cannot place: tile unavailable at (" + x + ", " + y + ")");
+//            return false;
+//        }
+
+//        if (!ResourceManager.Instance.CanAfford(config.placementCost))
+//        {
+//            Debug.Log("Cannot place: not enough resources");
+//            return false;
+//        }
+
+//        ResourceManager.Instance.Deduct(config.placementCost);
+
+//        BuildingState building = new BuildingState(config, x, y);
+//        tile.tileType = TileType.Occupied;
+//        tile.occupant = building;
+//        allBuildings.Add(building);
+//        gridRenderer.RefreshTile(x, y);
+
+//        Debug.Log("Placed " + config.buildingName + " at (" + x + ", " + y + ")");
+//        return true;
+//    }
+
+//    public bool UpgradeBuilding(int x, int y)
+//    {
+//        TileData tile = grid.GetTile(x, y);
+//        if (tile == null || tile.occupant == null) return false;
+
+//        BuildingState building = tile.occupant;
+//        int hqLevel = GetHQLevel();
+
+//        if (!building.CanUpgrade(hqLevel))
+//        {
+//            Debug.Log("Cannot upgrade " + building.config.buildingName + " level " + building.level);
+//            return false;
+//        }
+
+//        if (!ResourceManager.Instance.CanAfford(building.config.upgradeCost))
+//        {
+//            Debug.Log("Cannot upgrade: not enough resources");
+//            return false;
+//        }
+
+//        ResourceManager.Instance.Deduct(building.config.upgradeCost);
+//        building.StartUpgrade();
+//        Debug.Log("Upgrading " + building.config.buildingName + " to level " + (building.level + 1));
+//        return true;
+//    }
+
+//    void Update()
+//    {
+//        foreach (BuildingState b in allBuildings)
+//            b.CheckUpgradeComplete();
+//    }
+//}
+#endregion
+#region Phase 2 Sprint 7 - Building Manager with Visuals
 using System.Collections.Generic;
 using System.Resources;
 using UnityEngine;
@@ -134,11 +233,18 @@ public class BuildingManager : MonoBehaviour
 
     public bool PlaceBuilding(BuildingConfig config, int x, int y)
     {
-        TileData tile = grid.GetTile(x, y);
-        if (tile == null || tile.tileType != TileType.Empty)
+        // Check all footprint tiles are empty
+        for (int dx = 0; dx < config.footprintWidth; dx++)
         {
-            Debug.Log("Cannot place: tile unavailable at (" + x + ", " + y + ")");
-            return false;
+            for (int dy = 0; dy < config.footprintHeight; dy++)
+            {
+                TileData tile = grid.GetTile(x + dx, y + dy);
+                if (tile == null || tile.tileType != TileType.Empty)
+                {
+                    Debug.Log("Cannot place: tile unavailable at (" + (x + dx) + ", " + (y + dy) + ")");
+                    return false;
+                }
+            }
         }
 
         if (!ResourceManager.Instance.CanAfford(config.placementCost))
@@ -150,13 +256,43 @@ public class BuildingManager : MonoBehaviour
         ResourceManager.Instance.Deduct(config.placementCost);
 
         BuildingState building = new BuildingState(config, x, y);
-        tile.tileType = TileType.Occupied;
-        tile.occupant = building;
+
+        // Mark all footprint tiles as occupied
+        for (int dx = 0; dx < config.footprintWidth; dx++)
+        {
+            for (int dy = 0; dy < config.footprintHeight; dy++)
+            {
+                TileData tile = grid.GetTile(x + dx, y + dy);
+                tile.tileType = TileType.Occupied;
+                tile.occupant = building;
+                gridRenderer.RefreshTile(x + dx, y + dy);
+            }
+        }
+
         allBuildings.Add(building);
-        gridRenderer.RefreshTile(x, y);
+
+        if (config.buildingSprite != null)
+            SpawnBuildingSprite(config, x, y);
 
         Debug.Log("Placed " + config.buildingName + " at (" + x + ", " + y + ")");
         return true;
+    }
+
+    private void SpawnBuildingSprite(BuildingConfig config, int x, int y)
+    {
+        // Get world positions of the two corner tiles to find the footprint center
+        Vector3 bottomLeft = gridRenderer.GridToWorld(x, y);
+        Vector3 topRight = gridRenderer.GridToWorld(x + config.footprintWidth - 1, y + config.footprintHeight - 1);
+        Vector3 center = (bottomLeft + topRight) * 0.5f;
+
+        GameObject spriteObj = new GameObject("BuildingSprite_" + config.buildingName);
+        spriteObj.transform.position = center;
+
+        SpriteRenderer sr = spriteObj.AddComponent<SpriteRenderer>();
+        sr.sprite = config.buildingSprite;
+        sr.sortingLayerName = "Buildings";
+        // Buildings lower on screen draw in front of buildings higher up
+        sr.sortingOrder = -(int)(center.y * 100);
     }
 
     public bool UpgradeBuilding(int x, int y)
