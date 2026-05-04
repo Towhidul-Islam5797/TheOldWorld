@@ -90,6 +90,159 @@
 //}
 #endregion
 #region Phase 1 Sprint 3 - Camera Controls with New Input System
+//using UnityEngine;
+
+//public class CameraController : MonoBehaviour
+//{
+//    [SerializeField] private float panSpeed = 0.01f;
+//    [SerializeField] private float zoomSpeed = 0.5f;
+//    [SerializeField] private float minZoom = 3f;
+//    [SerializeField] private float maxZoom = 12f;
+//    [SerializeField] private float gridWidth = 20f;
+//    [SerializeField] private float gridHeight = 20f;
+
+//    public bool IsDragging => isDragging;
+
+//    private Vector3 dragOrigin;
+//    private bool isDragging;
+//    private Camera cam;
+
+//    void Start()
+//    {
+//        cam = GetComponent<Camera>();
+//    }
+
+//    void Update()
+//    {
+//        HandlePan();
+//        HandleZoom();
+//    }
+
+//    void HandlePan()
+//    {
+//        if (Input.GetMouseButtonDown(0))
+//        {
+//            dragOrigin = cam.ScreenToWorldPoint(Input.mousePosition);
+//            isDragging = false;
+//        }
+
+//        if (Input.GetMouseButton(0))
+//        {
+//            Vector3 currentPos = cam.ScreenToWorldPoint(Input.mousePosition);
+//            Vector3 delta = dragOrigin - currentPos;
+
+//            if (delta.magnitude > 0.01f)
+//                isDragging = true;
+
+//            if (isDragging)
+//            {
+//                transform.position += delta * panSpeed * cam.orthographicSize;
+//                ClampPosition();
+//            }
+//        }
+//    }
+
+//    void HandleZoom()
+//    {
+//        float scroll = Input.GetAxis("Mouse ScrollWheel");
+//        if (Mathf.Abs(scroll) < 0.001f)
+//            return;
+
+//        cam.orthographicSize -= scroll * zoomSpeed * cam.orthographicSize;
+//        cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, minZoom, maxZoom);
+//        ClampPosition();
+//    }
+
+//    void ClampPosition()
+//    {
+//        float halfW = gridWidth * 0.5f;
+//        float halfH = gridHeight * 0.25f;
+
+//        Vector3 pos = transform.position;
+//        pos.x = Mathf.Clamp(pos.x, -halfW, halfW);
+//        pos.y = Mathf.Clamp(pos.y, -halfH, halfH);
+//        transform.position = pos;
+//    }
+//}
+#endregion
+#region Phase 1 Sprint 8 - Camera Controls with New Input System and Clamping
+//using UnityEngine;
+
+//public class CameraController : MonoBehaviour
+//{
+//    [SerializeField] private float panSpeed = 0.01f;
+//    [SerializeField] private float zoomSpeed = 0.5f;
+//    [SerializeField] private float minZoom = 3f;
+//    [SerializeField] private float maxZoom = 12f;
+//    [SerializeField] private float gridWidth = 20f;
+//    [SerializeField] private float gridHeight = 20f;
+
+//    public bool IsDragging => isDragging;
+
+//    private Vector3 dragOrigin;
+//    private bool isDragging;
+//    private Camera cam;
+
+//    void Start()
+//    {
+//        cam = GetComponent<Camera>();
+//        transform.position = new Vector3(0f, gridHeight * 0.25f, transform.position.z);
+//    }
+
+//    void Update()
+//    {
+//        HandlePan();
+//        HandleZoom();
+//    }
+
+//    void HandlePan()
+//    {
+//        if (Input.GetMouseButtonDown(0))
+//        {
+//            dragOrigin = cam.ScreenToWorldPoint(Input.mousePosition);
+//            isDragging = false;
+//        }
+
+//        if (Input.GetMouseButton(0))
+//        {
+//            Vector3 currentPos = cam.ScreenToWorldPoint(Input.mousePosition);
+//            Vector3 delta = dragOrigin - currentPos;
+
+//            if (delta.magnitude > 0.01f)
+//                isDragging = true;
+
+//            if (isDragging)
+//            {
+//                transform.position += delta * panSpeed * cam.orthographicSize;
+//                ClampPosition();
+//            }
+//        }
+//    }
+
+//    void HandleZoom()
+//    {
+//        float scroll = Input.GetAxis("Mouse ScrollWheel");
+//        if (Mathf.Abs(scroll) < 0.001f)
+//            return;
+
+//        cam.orthographicSize -= scroll * zoomSpeed * cam.orthographicSize;
+//        cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, minZoom, maxZoom);
+//        ClampPosition();
+//    }
+
+//    void ClampPosition()
+//    {
+//        float halfW = gridWidth * 0.5f;
+//        float halfH = gridHeight * 0.25f;
+
+//        Vector3 pos = transform.position;
+//        pos.x = Mathf.Clamp(pos.x, -halfW, halfW);
+//        pos.y = Mathf.Clamp(pos.y, -halfH, halfH);
+//        transform.position = pos;
+//    }
+//}
+#endregion
+#region Phase 1 Sprint 8a - Camera Controls with New Input System, Clamping, and Initial Position
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -110,6 +263,7 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         cam = GetComponent<Camera>();
+        transform.position = new Vector3(0f, gridHeight * 0.25f, transform.position.z);
     }
 
     void Update()
@@ -156,12 +310,13 @@ public class CameraController : MonoBehaviour
     void ClampPosition()
     {
         float halfW = gridWidth * 0.5f;
-        float halfH = gridHeight * 0.25f;
+        float minY = 0f;
+        float maxY = gridHeight * 0.5f;
 
         Vector3 pos = transform.position;
         pos.x = Mathf.Clamp(pos.x, -halfW, halfW);
-        pos.y = Mathf.Clamp(pos.y, -halfH, halfH);
+        pos.y = Mathf.Clamp(pos.y, minY, maxY);
         transform.position = pos;
     }
 }
-#endregion  
+#endregion

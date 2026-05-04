@@ -407,7 +407,7 @@ MonoBehaviour:
   panSpeed: 0.01
   zoomSpeed: 0.5
   minZoom: 3
-  maxZoom: 12
+  maxZoom: 10
   gridWidth: 20
   gridHeight: 20
 --- !u!1 &655120555
