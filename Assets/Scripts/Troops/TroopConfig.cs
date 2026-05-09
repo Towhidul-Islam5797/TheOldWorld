@@ -11,16 +11,32 @@
 /// </summary>
 #endregion
 #region Phase 1 Sprint 5 - Troop Configuration ScriptableObject
-using UnityEngine;
+//using UnityEngine;
 
+//[CreateAssetMenu(fileName = "TroopConfig", menuName = "TheOldWorld/TroopConfig")]
+//public class TroopConfig : ScriptableObject
+//{
+//    public string troopName;
+//    public TroopType troopType;
+//    public BuildingType requiredBuilding;
+//    public int attack;
+//    public int defense;
+//    public ResourceCost trainingCostPerUnit;
+//    public float trainingTimeSecondsPerUnit;
+//}
+#endregion
+#region Phase 1 Sprint 8 - Troop Configuration ScriptableObject Updated
+using UnityEngine;
+ 
 [CreateAssetMenu(fileName = "TroopConfig", menuName = "TheOldWorld/TroopConfig")]
 public class TroopConfig : ScriptableObject
 {
     public string troopName;
     public TroopType troopType;
     public BuildingType requiredBuilding;
-    public int attack;
-    public int defense;
+    public int baseattack;
+    public int basedefense;
+    public int baseHealth;
     public ResourceCost trainingCostPerUnit;
     public float trainingTimeSecondsPerUnit;
 }

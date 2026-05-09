@@ -165,7 +165,7 @@
 //    }
 //}
 #endregion
-#region Phase 1 Sprint 8 - Camera Controls with New Input System and Clamping
+#region Phase 1 Sprint 7 - Camera Controls with New Input System and Clamping
 //using UnityEngine;
 
 //public class CameraController : MonoBehaviour
@@ -242,7 +242,7 @@
 //    }
 //}
 #endregion
-#region Phase 1 Sprint 8a - Camera Controls with New Input System, Clamping, and Initial Position
+#region Phase 1 Sprint 7a - Camera Controls with New Input System, Clamping, and Initial Position
 using UnityEngine;
 
 public class CameraController : MonoBehaviour

@@ -14,16 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BuildingConfig
   buildingName: Barracks
   buildingType: 1
-  maxLevel: 5
-  upgradeTimeSeconds: 8
+  maxLevel: 3
+  upgradeTimeSeconds: 90
   upgradeCost:
     food: 100
     wood: 100
     stone: 50
     gold: 0
   placementCost:
-    food: 50
-    wood: 50
-    stone: 0
+    food: 0
+    wood: 80
+    stone: 50
     gold: 0
   productionPerHour: 0
+  buildingSprite: {fileID: 0}
+  footprintWidth: 2
+  footprintHeight: 2

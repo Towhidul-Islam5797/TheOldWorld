@@ -15,11 +15,12 @@ MonoBehaviour:
   troopName: Cavalry
   troopType: 2
   requiredBuilding: 3
-  attack: 20
-  defense: 10
+  baseattack: 14
+  basedefense: 10
+  baseHealth: 11
   trainingCostPerUnit:
     food: 60
     wood: 0
     stone: 0
     gold: 40
-  trainingTimeSecondsPerUnit: 20
+  trainingTimeSecondsPerUnit: 45

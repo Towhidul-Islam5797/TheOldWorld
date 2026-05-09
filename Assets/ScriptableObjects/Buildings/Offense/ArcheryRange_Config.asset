@@ -14,16 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BuildingConfig
   buildingName: ArcheryRange
   buildingType: 2
-  maxLevel: 5
-  upgradeTimeSeconds: 60
+  maxLevel: 3
+  upgradeTimeSeconds: 90
   upgradeCost:
     food: 0
     wood: 150
     stone: 75
     gold: 0
   placementCost:
-    food: 100
+    food: 0
     wood: 0
     stone: 50
-    gold: 0
+    gold: 50
   productionPerHour: 0
+  buildingSprite: {fileID: 0}
+  footprintWidth: 2
+  footprintHeight: 2

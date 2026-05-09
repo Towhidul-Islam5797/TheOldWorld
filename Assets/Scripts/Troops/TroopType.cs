@@ -11,11 +11,20 @@
 /// </summary>
 #endregion
 #region Phase 1 Sprint 5 - Troop Type Enumeration
+//public enum TroopType
+//{
+//    Infantry,
+//    Archers,
+//    Cavalry,
+//    HorseArchers
+//}
+#endregion
+#region Phase 1 Sprint 8 - Troop Type Enumeration Update With Siege Troops
 public enum TroopType
 {
     Infantry,
     Archers,
     Cavalry,
-    HorseArchers
+    Siege
 }
 #endregion

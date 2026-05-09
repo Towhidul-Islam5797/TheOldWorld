@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dae4c8b3b86ec50489057ab7b28d6ad8, type: 3}
-  m_Name: Farm_Config
+  m_Name: StoreHouse_Config
   m_EditorClassIdentifier: Assembly-CSharp::BuildingConfig
-  buildingName: Farm
-  buildingType: 5
+  buildingName: Store House
+  buildingType: 9
   maxLevel: 3
   upgradeTimeSeconds: 90
   upgradeCost:
     food: 0
-    wood: 80
-    stone: 0
+    wood: 120
+    stone: 160
     gold: 0
   placementCost:
     food: 0
-    wood: 30
-    stone: 0
+    wood: 60
+    stone: 80
     gold: 0
-  productionPerHour: 60
+  productionPerHour: 0
   buildingSprite: {fileID: 0}
-  footprintWidth: 2
-  footprintHeight: 2
+  footprintWidth: 3
+  footprintHeight: 3

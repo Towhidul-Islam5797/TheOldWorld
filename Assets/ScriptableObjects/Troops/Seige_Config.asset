@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c8c5c8e258a8de46a0ccda18f3cd272, type: 3}
-  m_Name: HorseArchers_Config
+  m_Name: Seige_Config
   m_EditorClassIdentifier: Assembly-CSharp::TroopConfig
-  troopName: HorseArchers
+  troopName: Siege
   troopType: 3
-  requiredBuilding: 3
-  attack: 18
-  defense: 8
+  requiredBuilding: 4
+  baseattack: 18
+  basedefense: 5
+  baseHealth: 8
   trainingCostPerUnit:
-    food: 50
-    wood: 30
-    stone: 0
+    food: 0
+    wood: 50
+    stone: 80
     gold: 20
-  trainingTimeSecondsPerUnit: 18
+  trainingTimeSecondsPerUnit: 90

@@ -15,11 +15,12 @@ MonoBehaviour:
   troopName: Infantry
   troopType: 0
   requiredBuilding: 1
-  attack: 10
-  defense: 15
+  baseattack: 8
+  basedefense: 12
+  baseHealth: 16
   trainingCostPerUnit:
     food: 50
     wood: 20
     stone: 0
-    gold: 0
-  trainingTimeSecondsPerUnit: 10
+    gold: 10
+  trainingTimeSecondsPerUnit: 30

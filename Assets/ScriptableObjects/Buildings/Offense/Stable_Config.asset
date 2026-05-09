@@ -14,16 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BuildingConfig
   buildingName: Stable
   buildingType: 3
-  maxLevel: 5
+  maxLevel: 3
   upgradeTimeSeconds: 90
   upgradeCost:
     food: 0
     wood: 200
     stone: 150
-    gold: 0
+    gold: 60
   placementCost:
     food: 0
     wood: 150
     stone: 100
-    gold: 0
+    gold: 30
   productionPerHour: 0
+  buildingSprite: {fileID: 0}
+  footprintWidth: 2
+  footprintHeight: 2

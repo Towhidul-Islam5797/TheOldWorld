@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Walls_Config
   m_EditorClassIdentifier: Assembly-CSharp::BuildingConfig
   buildingName: Walls
-  buildingType: 9
-  maxLevel: 0
+  buildingType: 10
+  maxLevel: 1
   upgradeTimeSeconds: 0
   upgradeCost:
     food: 0
@@ -27,3 +27,6 @@ MonoBehaviour:
     stone: 0
     gold: 0
   productionPerHour: 0
+  buildingSprite: {fileID: 0}
+  footprintWidth: 1
+  footprintHeight: 1
