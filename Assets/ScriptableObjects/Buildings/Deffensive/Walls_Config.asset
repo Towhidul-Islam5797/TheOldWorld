@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BuildingConfig
   buildingName: Walls
   buildingType: 10
-  maxLevel: 1
+  maxLevel: 3
   upgradeTimeSeconds: 0
   upgradeCost:
     food: 0
-    wood: 0
-    stone: 0
+    wood: 120
+    stone: 120
     gold: 0
   placementCost:
     food: 0
-    wood: 0
-    stone: 0
+    wood: 60
+    stone: 60
     gold: 0
   productionPerHour: 0
   buildingSprite: {fileID: 0}

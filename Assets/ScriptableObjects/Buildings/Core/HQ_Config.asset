@@ -17,7 +17,7 @@ MonoBehaviour:
   maxLevel: 3
   upgradeTimeSeconds: 180
   upgradeCost:
-    food: 0
+    food: 100
     wood: 100
     stone: 150
     gold: 50

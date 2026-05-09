@@ -23,7 +23,7 @@ MonoBehaviour:
     gold: 0
   placementCost:
     food: 0
-    wood: 0
+    wood: 40
     stone: 50
     gold: 50
   productionPerHour: 0
