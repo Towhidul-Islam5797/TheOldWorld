@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WatchTower_Config
   m_EditorClassIdentifier: Assembly-CSharp::BuildingConfig
   buildingName: WatchTower
-  buildingType: 11
+  buildingType: 8
   maxLevel: 3
   upgradeTimeSeconds: 90
   upgradeCost:

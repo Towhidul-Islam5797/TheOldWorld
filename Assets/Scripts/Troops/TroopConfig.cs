@@ -26,16 +26,33 @@
 //}
 #endregion
 #region Phase 1 Sprint 8 - Troop Configuration ScriptableObject Updated
+//using UnityEngine;
+
+//[CreateAssetMenu(fileName = "TroopConfig", menuName = "TheOldWorld/TroopConfig")]
+//public class TroopConfig : ScriptableObject
+//{
+//    public string troopName;
+//    public TroopType troopType;
+//    public BuildingType requiredBuilding;
+//    public int baseattack;
+//    public int basedefense;
+//    public int baseHealth;
+//    public ResourceCost trainingCostPerUnit;
+//    public float trainingTimeSecondsPerUnit;
+//}
+#endregion
+#region Client Revision - Barracks Level Gating
 using UnityEngine;
- 
+
 [CreateAssetMenu(fileName = "TroopConfig", menuName = "TheOldWorld/TroopConfig")]
 public class TroopConfig : ScriptableObject
 {
     public string troopName;
     public TroopType troopType;
-    public BuildingType requiredBuilding;
-    public int baseattack;
-    public int basedefense;
+    [Tooltip("Minimum Barracks level required to train this troop. Infantry=1, Archers=2, Cavalry=3, Siege=4")]
+    public int requiredBarracksLevel;
+    public int baseAttack;
+    public int baseDefense;
     public int baseHealth;
     public ResourceCost trainingCostPerUnit;
     public float trainingTimeSecondsPerUnit;

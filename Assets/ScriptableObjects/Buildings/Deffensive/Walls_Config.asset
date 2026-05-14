@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Walls_Config
   m_EditorClassIdentifier: Assembly-CSharp::BuildingConfig
   buildingName: Walls
-  buildingType: 10
+  buildingType: 7
   maxLevel: 3
   upgradeTimeSeconds: 0
   upgradeCost:

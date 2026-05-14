@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BuildingConfig
   buildingName: Barracks
   buildingType: 1
-  maxLevel: 3
+  maxLevel: 4
   upgradeTimeSeconds: 90
   upgradeCost:
     food: 100

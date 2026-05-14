@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: LumberMill_Config
   m_EditorClassIdentifier: Assembly-CSharp::BuildingConfig
   buildingName: LumberMill
-  buildingType: 6
-  maxLevel: 3
+  buildingType: 3
+  maxLevel: 4
   upgradeTimeSeconds: 60
   upgradeCost:
     food: 0

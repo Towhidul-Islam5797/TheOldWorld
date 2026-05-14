@@ -16,6 +16,110 @@
 /// </summary>
 #endregion
 #region Phase 1 Sprint 5 - Training Manager Class
+//using UnityEngine;
+//using System;
+//using System.Collections.Generic;
+
+//public class TrainingManager : MonoBehaviour
+//{
+//    public static TrainingManager Instance;
+
+//    private const int maxQueueSize = 2;
+
+//    private Queue<TrainingJob> trainingQueue = new Queue<TrainingJob>();
+
+//    void Awake()
+//    {
+//        Instance = this;
+//    }
+
+//    void Update()
+//    {
+//        if (trainingQueue.Count == 0) return;
+
+//        TrainingJob current = trainingQueue.Peek();
+
+//        if (DateTime.UtcNow >= current.completionTime)
+//            CompleteCurrentJob();
+//    }
+
+//    public bool CanTrain(TroopConfig config, int quantity)
+//    {
+//        if (quantity <= 0)
+//        {
+//            Debug.Log("Quantity must be greater than zero.");
+//            return false;
+//        }
+
+//        if (trainingQueue.Count >= maxQueueSize)
+//        {
+//            Debug.Log("Training queue is full.");
+//            return false;
+//        }
+
+//        if (!HasRequiredBuilding(config.requiredBuilding))
+//        {
+//            Debug.Log("Required building not placed: " + config.requiredBuilding);
+//            return false;
+//        }
+
+//        ResourceCost totalCost = GetTotalCost(config, quantity);
+
+//        if (!ResourceManager.Instance.CanAfford(totalCost))
+//        {
+//            Debug.Log("Not enough resources to train " + quantity + " " + config.troopName);
+//            return false;
+//        }
+
+//        return true;
+//    }
+
+//    public bool StartTraining(TroopConfig config, int quantity)
+//    {
+//        if (!CanTrain(config, quantity)) return false;
+
+//        ResourceCost totalCost = GetTotalCost(config, quantity);
+//        ResourceManager.Instance.Deduct(totalCost);
+
+//        TrainingJob job = new TrainingJob(config, quantity);
+//        trainingQueue.Enqueue(job);
+
+//        Debug.Log("Training started: " + quantity + " " + config.troopName
+//            + ". Completes at: " + job.completionTime.ToLocalTime());
+
+//        return true;
+//    }
+
+//    private void CompleteCurrentJob()
+//    {
+//        TrainingJob job = trainingQueue.Dequeue();
+//        TroopInventory.Instance.Add(job.config.troopType, job.quantity);
+//        Debug.Log("Training complete: " + job.quantity + " " + job.config.troopName);
+//    }
+
+//    private bool HasRequiredBuilding(BuildingType buildingType)
+//    {
+//        foreach (BuildingState b in BuildingManager.Instance.GetAllBuildings())
+//        {
+//            if (b.config.buildingType == buildingType)
+//                return true;
+//        }
+//        return false;
+//    }
+
+//    private ResourceCost GetTotalCost(TroopConfig config, int quantity)
+//    {
+//        return new ResourceCost
+//        {
+//            food = config.trainingCostPerUnit.food * quantity,
+//            wood = config.trainingCostPerUnit.wood * quantity,
+//            stone = config.trainingCostPerUnit.stone * quantity,
+//            gold = config.trainingCostPerUnit.gold * quantity
+//        };
+//    }
+//}
+#endregion
+#region Client Revision - Barracks Level Gating
 using UnityEngine;
 using System;
 using System.Collections.Generic;
@@ -57,9 +161,9 @@ public class TrainingManager : MonoBehaviour
             return false;
         }
 
-        if (!HasRequiredBuilding(config.requiredBuilding))
+        if (!BarracksLevelMet(config.requiredBarracksLevel))
         {
-            Debug.Log("Required building not placed: " + config.requiredBuilding);
+            Debug.Log(config.troopName + " requires Barracks level " + config.requiredBarracksLevel);
             return false;
         }
 
@@ -90,6 +194,12 @@ public class TrainingManager : MonoBehaviour
         return true;
     }
 
+    // Returns a copy of the queue for UI to read without modifying the queue itself.
+    public TrainingJob[] GetQueueSnapshot()
+    {
+        return trainingQueue.ToArray();
+    }
+
     private void CompleteCurrentJob()
     {
         TrainingJob job = trainingQueue.Dequeue();
@@ -97,11 +207,12 @@ public class TrainingManager : MonoBehaviour
         Debug.Log("Training complete: " + job.quantity + " " + job.config.troopName);
     }
 
-    private bool HasRequiredBuilding(BuildingType buildingType)
+    // Checks that a Barracks exists and is at or above the required level.
+    private bool BarracksLevelMet(int requiredLevel)
     {
         foreach (BuildingState b in BuildingManager.Instance.GetAllBuildings())
         {
-            if (b.config.buildingType == buildingType)
+            if (b.config.buildingType == BuildingType.Barracks && b.level >= requiredLevel)
                 return true;
         }
         return false;

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GoldMine_Config
   m_EditorClassIdentifier: Assembly-CSharp::BuildingConfig
   buildingName: GoldMine
-  buildingType: 8
-  maxLevel: 3
+  buildingType: 5
+  maxLevel: 4
   upgradeTimeSeconds: 90
   upgradeCost:
     food: 0

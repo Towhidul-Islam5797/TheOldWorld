@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TroopConfig
   troopName: Siege
   troopType: 3
-  requiredBuilding: 4
-  baseattack: 18
-  basedefense: 5
+  requiredBarracksLevel: 4
+  baseAttack: 18
+  baseDefense: 5
   baseHealth: 8
   trainingCostPerUnit:
     food: 0

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Farm_Config
   m_EditorClassIdentifier: Assembly-CSharp::BuildingConfig
   buildingName: Farm
-  buildingType: 5
-  maxLevel: 3
+  buildingType: 2
+  maxLevel: 4
   upgradeTimeSeconds: 90
   upgradeCost:
     food: 0

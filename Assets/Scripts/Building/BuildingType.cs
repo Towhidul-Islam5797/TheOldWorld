@@ -41,13 +41,28 @@
 //}
 #endregion
 #region Phase 1 Sprint 8 - Building Type Enumeration Extended
+//public enum BuildingType
+//{
+//    HQ,
+//    Barracks,
+//    ArcheryRange,
+//    Stable,
+//    SiegeWorkshop,
+//    Farm,
+//    LumberMill,
+//    Quarry,
+//    GoldMine,
+//    Storehouse,
+//    Walls,
+//    Watchtower
+//}
+#endregion
+
+#region Client Revision - Barracks Only Training
 public enum BuildingType
 {
     HQ,
     Barracks,
-    ArcheryRange,
-    Stable,
-    SiegeWorkshop,
     Farm,
     LumberMill,
     Quarry,

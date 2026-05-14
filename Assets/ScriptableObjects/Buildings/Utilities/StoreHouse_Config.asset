@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: StoreHouse_Config
   m_EditorClassIdentifier: Assembly-CSharp::BuildingConfig
   buildingName: Store House
-  buildingType: 9
-  maxLevel: 3
+  buildingType: 6
+  maxLevel: 4
   upgradeTimeSeconds: 90
   upgradeCost:
     food: 0

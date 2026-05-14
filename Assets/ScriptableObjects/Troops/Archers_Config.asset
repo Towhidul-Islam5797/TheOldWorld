@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TroopConfig
   troopName: Archers
   troopType: 1
-  requiredBuilding: 2
-  baseattack: 12
-  basedefense: 8
+  requiredBarracksLevel: 2
+  baseAttack: 12
+  baseDefense: 8
   baseHealth: 12
   trainingCostPerUnit:
     food: 30

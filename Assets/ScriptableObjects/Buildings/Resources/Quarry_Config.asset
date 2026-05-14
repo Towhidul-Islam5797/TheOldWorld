@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Quarry_Config
   m_EditorClassIdentifier: Assembly-CSharp::BuildingConfig
   buildingName: Quarry
-  buildingType: 7
-  maxLevel: 3
+  buildingType: 4
+  maxLevel: 4
   upgradeTimeSeconds: 60
   upgradeCost:
     food: 0

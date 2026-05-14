@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TroopConfig
   troopName: Infantry
   troopType: 0
-  requiredBuilding: 1
-  baseattack: 8
-  basedefense: 12
+  requiredBarracksLevel: 1
+  baseAttack: 8
+  baseDefense: 12
   baseHealth: 16
   trainingCostPerUnit:
     food: 50
