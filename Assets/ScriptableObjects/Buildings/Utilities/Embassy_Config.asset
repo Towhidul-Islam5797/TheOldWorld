@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dae4c8b3b86ec50489057ab7b28d6ad8, type: 3}
-  m_Name: StoreHouse_Config
+  m_Name: Embassy_Config
   m_EditorClassIdentifier: Assembly-CSharp::BuildingConfig
-  buildingName: Store House
-  buildingType: 6
+  buildingName: Embassy
+  buildingType: 10
   maxLevel: 4
   upgradeTimeSeconds: 90
   upgradeCost:
     food: 0
     wood: 120
     stone: 160
-    gold: 0
+    silver: 0
   placementCost:
     food: 0
     wood: 60
     stone: 80
-    gold: 0
+    silver: 0
   productionPerHour: 0
   buildingSprite: {fileID: 0}
   footprintWidth: 3

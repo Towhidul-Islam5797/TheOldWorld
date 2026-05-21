@@ -22,5 +22,5 @@ MonoBehaviour:
     food: 50
     wood: 20
     stone: 0
-    gold: 10
+    silver: 10
   trainingTimeSecondsPerUnit: 30

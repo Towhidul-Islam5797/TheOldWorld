@@ -73,24 +73,55 @@
 //}
 #endregion
 
-#region 
+#region Milestone 1 Sprint 9 - Building Type Enumeration Refactored Gold Renamed to Silver
+//public enum BuildingType
+//{
+//    //Core
+//    HQ,
+//    //Military/Offense
+//    Barracks,
+//    //Resource Production
+//    Farm,
+//    LumberMill,
+//    Quarry,
+//    SilverMine,
+
+//    //Utility
+//    Storehouse,
+//    Forge,
+
+//    //Defense
+//    Walls,
+//    Watchtower,
+//}
+#endregion
+#region Milestone 1 Sprint 10 - Final Building List
 public enum BuildingType
 {
-    //Core
+    // Core
     HQ,
-    //Military/Offense
+
+    // Offense
     Barracks,
-    //Resource Production
+
+    // Resource Production
     Farm,
     LumberMill,
     Quarry,
     SilverMine,
 
-    //Utility
-    Storehouse,
+    // Progression
+    Academy,
     Forge,
-    //Defense
+
+    // Defense
     Walls,
     Watchtower,
+
+    // Phase 3 - enum only, no logic yet
+    Embassy,
+    Hospital,
+    Altar,
+    Prison
 }
 #endregion
