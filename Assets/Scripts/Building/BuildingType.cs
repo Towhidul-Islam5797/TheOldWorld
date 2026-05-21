@@ -59,16 +59,38 @@
 #endregion
 
 #region Client Revision - Barracks Only Training
+//public enum BuildingType
+//{
+//    HQ,
+//    Barracks,
+//    Farm,
+//    LumberMill,
+//    Quarry,
+//    SilverMine,
+//    Storehouse,
+//    Walls,
+//    Watchtower,
+//}
+#endregion
+
+#region 
 public enum BuildingType
 {
+    //Core
     HQ,
+    //Military/Offense
     Barracks,
+    //Resource Production
     Farm,
     LumberMill,
     Quarry,
-    GoldMine,
+    SilverMine,
+
+    //Utility
     Storehouse,
+    Forge,
+    //Defense
     Walls,
-    Watchtower
+    Watchtower,
 }
 #endregion

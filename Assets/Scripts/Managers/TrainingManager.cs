@@ -120,6 +120,118 @@
 //}
 #endregion
 #region Client Revision - Barracks Level Gating
+//using UnityEngine;
+//using System;
+//using System.Collections.Generic;
+
+//public class TrainingManager : MonoBehaviour
+//{
+//    public static TrainingManager Instance;
+
+//    private const int maxQueueSize = 2;
+
+//    private Queue<TrainingJob> trainingQueue = new Queue<TrainingJob>();
+
+//    void Awake()
+//    {
+//        Instance = this;
+//    }
+
+//    void Update()
+//    {
+//        if (trainingQueue.Count == 0) return;
+
+//        TrainingJob current = trainingQueue.Peek();
+
+//        if (DateTime.UtcNow >= current.completionTime)
+//            CompleteCurrentJob();
+//    }
+
+//    public bool CanTrain(TroopConfig config, int quantity)
+//    {
+//        if (quantity <= 0)
+//        {
+//            Debug.Log("Quantity must be greater than zero.");
+//            return false;
+//        }
+
+//        if (trainingQueue.Count >= maxQueueSize)
+//        {
+//            Debug.Log("Training queue is full.");
+//            return false;
+//        }
+
+//        if (!BarracksLevelMet(config.requiredBarracksLevel))
+//        {
+//            Debug.Log(config.troopName + " requires Barracks level " + config.requiredBarracksLevel);
+//            return false;
+//        }
+
+//        ResourceCost totalCost = GetTotalCost(config, quantity);
+
+//        if (!ResourceManager.Instance.CanAfford(totalCost))
+//        {
+//            Debug.Log("Not enough resources to train " + quantity + " " + config.troopName);
+//            return false;
+//        }
+
+//        return true;
+//    }
+
+//    public bool StartTraining(TroopConfig config, int quantity)
+//    {
+//        if (!CanTrain(config, quantity)) return false;
+
+//        ResourceCost totalCost = GetTotalCost(config, quantity);
+//        ResourceManager.Instance.Deduct(totalCost);
+
+//        TrainingJob job = new TrainingJob(config, quantity);
+//        trainingQueue.Enqueue(job);
+
+//        Debug.Log("Training started: " + quantity + " " + config.troopName
+//            + ". Completes at: " + job.completionTime.ToLocalTime());
+
+//        return true;
+//    }
+
+//    // Returns a copy of the queue for UI to read without modifying the queue itself.
+//    public TrainingJob[] GetQueueSnapshot()
+//    {
+//        return trainingQueue.ToArray();
+//    }
+
+//    private void CompleteCurrentJob()
+//    {
+//        TrainingJob job = trainingQueue.Dequeue();
+//        TroopInventory.Instance.Add(job.config.troopType, job.quantity);
+//        Debug.Log("Training complete: " + job.quantity + " " + job.config.troopName);
+//    }
+
+//    // Checks that a Barracks exists and is at or above the required level.
+//    private bool BarracksLevelMet(int requiredLevel)
+//    {
+//        foreach (BuildingState b in BuildingManager.Instance.GetAllBuildings())
+//        {
+//            if (b.config.buildingType == BuildingType.Barracks && b.level >= requiredLevel)
+//                return true;
+//        }
+//        return false;
+//    }
+
+//    private ResourceCost GetTotalCost(TroopConfig config, int quantity)
+//    {
+//        return new ResourceCost
+//        {
+//            food = config.trainingCostPerUnit.food * quantity,
+//            wood = config.trainingCostPerUnit.wood * quantity,
+//            stone = config.trainingCostPerUnit.stone * quantity,
+//            gold = config.trainingCostPerUnit.gold * quantity
+//        };
+//    }
+//}
+#endregion
+
+#region Phase 1 Sprint 9 - 
 using UnityEngine;
 using System;
 using System.Collections.Generic;
@@ -225,7 +337,7 @@ public class TrainingManager : MonoBehaviour
             food = config.trainingCostPerUnit.food * quantity,
             wood = config.trainingCostPerUnit.wood * quantity,
             stone = config.trainingCostPerUnit.stone * quantity,
-            gold = config.trainingCostPerUnit.gold * quantity
+            silver = config.trainingCostPerUnit.silver * quantity
         };
     }
 }

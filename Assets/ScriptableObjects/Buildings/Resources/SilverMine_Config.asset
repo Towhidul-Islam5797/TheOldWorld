@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dae4c8b3b86ec50489057ab7b28d6ad8, type: 3}
-  m_Name: GoldMine_Config
+  m_Name: SilverMine_Config
   m_EditorClassIdentifier: Assembly-CSharp::BuildingConfig
-  buildingName: GoldMine
+  buildingName: Silver mine
   buildingType: 5
   maxLevel: 4
   upgradeTimeSeconds: 90
@@ -20,12 +20,12 @@ MonoBehaviour:
     food: 0
     wood: 50
     stone: 0
-    gold: 0
+    silver: 0
   placementCost:
     food: 0
     wood: 30
     stone: 0
-    gold: 0
+    silver: 0
   productionPerHour: 30
   buildingSprite: {fileID: 0}
   footprintWidth: 2

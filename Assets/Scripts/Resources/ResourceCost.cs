@@ -11,12 +11,23 @@
 /// </summary>
 #endregion
 #region Phase 1 Sprint 4 - Resource System Implementation
+//[System.Serializable]
+//public class ResourceCost
+//{
+//    public float food;
+//    public float wood;
+//    public float stone;
+//    public float gold;
+//}
+#endregion 
+
+#region Phase 1 Sprint 9 - Resource System Refactored Gold Renamed to Silver
 [System.Serializable]
 public class ResourceCost
 {
     public float food;
     public float wood;
     public float stone;
-    public float gold;
+    public float silver;
 }
-#endregion  
+#endregion

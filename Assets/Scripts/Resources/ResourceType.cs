@@ -12,11 +12,20 @@
 /// </summary>
 #endregion
 #region Phase 1 Sprint 4 - Resource System Implementation
+//public enum ResourceType
+//{
+//    Food,
+//    Wood,
+//    Stone,
+//    Gold
+//}
+#endregion
+#region Phase 1 Sprint 9 - Resource System Refactored Gold Renamed to Silver
 public enum ResourceType
 {
     Food,
     Wood,
     Stone,
-    Gold
+    Silver //Gold
 }
 #endregion
