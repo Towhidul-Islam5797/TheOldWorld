@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c8c5c8e258a8de46a0ccda18f3cd272, type: 3}
-  m_Name: Seige_Config
+  m_Name: Siege_Config
   m_EditorClassIdentifier: Assembly-CSharp::TroopConfig
   troopName: Siege
   troopType: 3

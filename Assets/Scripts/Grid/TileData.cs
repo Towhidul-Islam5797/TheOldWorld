@@ -32,6 +32,31 @@
 //}
 #endregion
 #region Phase 1 Sprint 2 - Tile Data Structure
+//public enum TileType
+//{
+//    Empty,
+//    Occupied,
+//    NPCCamp,
+//    Resource
+//}
+
+//public class TileData
+//{
+//    public int gridX;
+//    public int gridY;
+//    public TileType tileType;
+//    public BuildingState occupant;
+
+//    public TileData(int x, int y)
+//    {
+//        gridX = x;
+//        gridY = y;
+//        tileType = TileType.Empty;
+//    }
+//}
+#endregion
+
+#region Milestone 1 Sprint 10 - Tile Data with Camp Reference
 public enum TileType
 {
     Empty,
@@ -46,6 +71,7 @@ public class TileData
     public int gridY;
     public TileType tileType;
     public BuildingState occupant;
+    public BanditCamp campData; // Set when tileType is NPCCamp
 
     public TileData(int x, int y)
     {

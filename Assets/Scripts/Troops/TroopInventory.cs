@@ -10,10 +10,45 @@
 /// </summary>
 #endregion
 #region Phase 1 Sprint 5 - Troop Inventory Class
+//using UnityEngine;
+//using System;
+//using System.Collections.Generic;
+
+//public class TroopInventory : MonoBehaviour
+//{
+//    public static TroopInventory Instance;
+
+//    private Dictionary<TroopType, int> troops = new Dictionary<TroopType, int>();
+
+//    public event Action OnInventoryChanged;
+
+//    void Awake()
+//    {
+//        Instance = this;
+
+//        foreach (TroopType type in Enum.GetValues(typeof(TroopType)))
+//            troops[type] = 0;
+//    }
+
+//    public void Add(TroopType type, int amount)
+//    {
+//        troops[type] += amount;
+//        Debug.Log(amount + " " + type + " added. Total: " + troops[type]);
+//        OnInventoryChanged?.Invoke();
+//    }
+
+//    public int GetCount(TroopType type)
+//    {
+//        return troops[type];
+//    }
+//}
+#endregion
+
+#region Phase 1 Sprint 10 - Troop Inventory Class
 using UnityEngine;
 using System;
 using System.Collections.Generic;
-
+ 
 public class TroopInventory : MonoBehaviour
 {
     public static TroopInventory Instance;
@@ -34,6 +69,12 @@ public class TroopInventory : MonoBehaviour
     {
         troops[type] += amount;
         Debug.Log(amount + " " + type + " added. Total: " + troops[type]);
+        OnInventoryChanged?.Invoke();
+    }
+
+    public void Deduct(TroopType type, int amount)
+    {
+        troops[type] = Mathf.Max(0, troops[type] - amount);
         OnInventoryChanged?.Invoke();
     }
 

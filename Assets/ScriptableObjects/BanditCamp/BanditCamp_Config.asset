@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79fc85aad21d45446bcf7f78c3bef6c1, type: 3}
+  m_Name: BanditCamp_Config
+  m_EditorClassIdentifier: Assembly-CSharp::BanditCampConfig
+  totalCamps: 12
+  respawnTimeSeconds: 300
+  foodLootMin: 20
+  foodLootMax: 80
+  woodLootMin: 20
+  woodLootMax: 80
+  stoneLootMin: 10
+  stoneLootMax: 60
+  silverLootMin: 5
+  silverLootMax: 40
+  baseMaterialDropChance: 0.3
