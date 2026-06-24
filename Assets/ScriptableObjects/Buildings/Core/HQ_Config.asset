@@ -14,19 +14,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BuildingConfig
   buildingName: HQ
   buildingType: 0
-  maxLevel: 3
-  upgradeTimeSeconds: 180
-  upgradeCost:
-    food: 100
-    wood: 100
-    stone: 150
-    silver: 50
   placementCost:
     food: 0
     wood: 0
     stone: 0
     silver: 0
-  productionPerHour: 0
-  buildingSprite: {fileID: 21300000, guid: 2a1b94a27f55c9641bc8022381508cec, type: 3}
   footprintWidth: 4
   footprintHeight: 4
+  levels:
+  - sprite: {fileID: 21300000, guid: 269444286e837654b9df616728353359, type: 3}
+    upgradeTimeSeconds: 60
+    upgradeCost:
+      food: 200
+      wood: 100
+      stone: 100
+      silver: 50
+    productionPerHour: 0
+  - sprite: {fileID: 21300000, guid: db098407ab627f04592f4e6b43527b7b, type: 3}
+    upgradeTimeSeconds: 120
+    upgradeCost:
+      food: 400
+      wood: 200
+      stone: 200
+      silver: 100
+    productionPerHour: 0
+  - sprite: {fileID: 21300000, guid: 02219b842fbbabf458fd224664a7f38a, type: 3}
+    upgradeTimeSeconds: 0
+    upgradeCost:
+      food: 0
+      wood: 0
+      stone: 0
+      silver: 0
+    productionPerHour: 0

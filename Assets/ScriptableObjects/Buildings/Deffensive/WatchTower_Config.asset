@@ -20,13 +20,13 @@ MonoBehaviour:
     food: 0
     wood: 80
     stone: 80
-    gold: 0
+    silver: 0
   placementCost:
     food: 0
     wood: 40
     stone: 40
-    gold: 0
+    silver: 0
   productionPerHour: 0
-  buildingSprite: {fileID: 0}
+  buildingSprite: {fileID: 1496917676645264342, guid: 62f97982e6f197149923a81cc7db12d1, type: 3}
   footprintWidth: 2
   footprintHeight: 2

@@ -222,6 +222,106 @@
 //}
 #endregion
 #region Milestone 1 Sprint 9 - Resource System Refactored Gold Renamed to Silver
+//using UnityEngine;
+//using System;
+
+//public class ResourceManager : MonoBehaviour
+//{
+//    public static ResourceManager Instance;
+
+//    [Header("Current Resources")]
+//    public float food;
+//    public float wood;
+//    public float stone;
+//    public float silver;
+
+//    [Header("Starting Resources")]
+//    [SerializeField] private float startFood = 300f;
+//    [SerializeField] private float startWood = 300f;
+//    [SerializeField] private float startStone = 300f;
+//    [SerializeField] private float startSilver = 100f;
+
+//    private const float tickIntervalSeconds = 60f;
+//    private float tickTimer;
+
+//    public event Action OnResourceChanged;
+
+//    void Awake()
+//    {
+//        Instance = this;
+//    }
+
+//    void Start()
+//    {
+//        food = startFood;
+//        wood = startWood;
+//        stone = startStone;
+//        silver = startSilver;
+
+//        OnResourceChanged?.Invoke();
+//    }
+
+//    void Update()
+//    {
+//        tickTimer += Time.deltaTime;
+//        if (tickTimer >= tickIntervalSeconds)
+//        {
+//            tickTimer = 0f;
+//            RunProductionTick();
+//        }
+//    }
+
+//    void RunProductionTick()
+//    {
+//        if (BuildingManager.Instance == null) return;
+
+//        foreach (BuildingState b in BuildingManager.Instance.GetAllBuildings())
+//        {
+//            if (b.isUpgrading) continue;
+//            if (b.config.productionPerHour <= 0f) continue;
+
+//            float amountPerTick = b.config.productionPerHour / 60f;
+
+//            switch (b.config.buildingType)
+//            {
+//                case BuildingType.Farm: Add(ResourceType.Food, amountPerTick); break;
+//                case BuildingType.LumberMill: Add(ResourceType.Wood, amountPerTick); break;
+//                case BuildingType.Quarry: Add(ResourceType.Stone, amountPerTick); break;
+//                case BuildingType.SilverMine: Add(ResourceType.Silver, amountPerTick); break;
+//            }
+//        }
+//    }
+
+//    public void Add(ResourceType type, float amount)
+//    {
+//        switch (type)
+//        {
+//            case ResourceType.Food: food += amount; break;
+//            case ResourceType.Wood: wood += amount; break;
+//            case ResourceType.Stone: stone += amount; break;
+//            case ResourceType.Silver: silver += amount; break;
+//        }
+//        OnResourceChanged?.Invoke();
+//    }
+
+//    public bool CanAfford(ResourceCost cost)
+//    {
+//        return food >= cost.food && wood >= cost.wood
+//            && stone >= cost.stone && silver >= cost.silver;
+//    }
+
+//    public void Deduct(ResourceCost cost)
+//    {
+//        food -= cost.food;
+//        wood -= cost.wood;
+//        stone -= cost.stone;
+//        silver -= cost.silver;
+//        OnResourceChanged?.Invoke();
+//    }
+//}
+#endregion
+
+#region Phase 2 Sprint 1 - Resource Manager With Per-Level Production
 using UnityEngine;
 using System;
 
@@ -257,7 +357,6 @@ public class ResourceManager : MonoBehaviour
         wood = startWood;
         stone = startStone;
         silver = startSilver;
-
         OnResourceChanged?.Invoke();
     }
 
@@ -278,9 +377,11 @@ public class ResourceManager : MonoBehaviour
         foreach (BuildingState b in BuildingManager.Instance.GetAllBuildings())
         {
             if (b.isUpgrading) continue;
-            if (b.config.productionPerHour <= 0f) continue;
 
-            float amountPerTick = b.config.productionPerHour / 60f;
+            float productionPerHour = b.config.GetLevel(b.level).productionPerHour;
+            if (productionPerHour <= 0f) continue;
+
+            float amountPerTick = productionPerHour / 60f;
 
             switch (b.config.buildingType)
             {

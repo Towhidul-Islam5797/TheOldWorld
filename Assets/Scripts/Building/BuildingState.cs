@@ -12,7 +12,56 @@
 /// Note: This class relies on the BuildingConfig class for configuration data and assumes that BuildingType is an enum defined elsewhere in the codebase.
 /// </summary>
 #endregion
+
 #region Phase 1 Sprint 3 - Building State
+//using UnityEngine;
+//public class BuildingState
+//{
+//    public BuildingConfig config;
+//    public int level;
+//    public bool isUpgrading;
+//    public float upgradeEndTime;
+//    public int tileX;
+//    public int tileY;
+
+//    public BuildingState(BuildingConfig config, int x, int y)
+//    {
+//        this.config = config;
+//        level = 1;
+//        tileX = x;
+//        tileY = y;
+//    }
+
+//    public bool CanUpgrade(int hqLevel)
+//    {
+//        if (isUpgrading) return false;
+//        if (level >= config.maxLevel) return false;
+//        if (config.buildingType != BuildingType.HQ && level >= hqLevel) return false;
+//        return true;
+//    }
+
+//    public void StartUpgrade()
+//    {
+//        isUpgrading = true;
+//        upgradeEndTime = UnityEngine.Time.time + config.upgradeTimeSeconds * level;
+//    }
+
+//    public void CheckUpgradeComplete()
+//    {
+//        if (!isUpgrading) return;
+//        if (UnityEngine.Time.time >= upgradeEndTime)
+//        {
+//            level++;
+//            isUpgrading = false;
+//            UnityEngine.Debug.Log(config.buildingName + " upgrade complete. Now level " + level);
+//        }
+//    }
+//}
+#endregion
+
+#region Phase 2 Sprint 1 - Building State With Per-Level Data
+using UnityEngine;
+ 
 public class BuildingState
 {
     public BuildingConfig config;
@@ -41,17 +90,18 @@ public class BuildingState
     public void StartUpgrade()
     {
         isUpgrading = true;
-        upgradeEndTime = UnityEngine.Time.time + config.upgradeTimeSeconds * level;
+        float upgradeTime = config.GetLevel(level).upgradeTimeSeconds;
+        upgradeEndTime = Time.time + upgradeTime;
     }
 
     public void CheckUpgradeComplete()
     {
         if (!isUpgrading) return;
-        if (UnityEngine.Time.time >= upgradeEndTime)
+        if (Time.time >= upgradeEndTime)
         {
             level++;
             isUpgrading = false;
-            UnityEngine.Debug.Log(config.buildingName + " upgrade complete. Now level " + level);
+            Debug.Log(config.buildingName + " upgrade complete. Now level " + level);
         }
     }
 }
