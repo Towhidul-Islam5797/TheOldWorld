@@ -22,27 +22,27 @@ MonoBehaviour:
   footprintWidth: 2
   footprintHeight: 2
   levels:
-  - sprite: {fileID: 8596871565251521718, guid: 13026f6dc08303347ac1263d40bf83d4, type: 3}
-    upgradeTimeSeconds: 0
+  - sprite: {fileID: 21300000, guid: 13026f6dc08303347ac1263d40bf83d4, type: 3}
+    upgradeTimeSeconds: 30
+    upgradeCost:
+      food: 0
+      wood: 50
+      stone: 0
+      silver: 100
+    productionPerHour: 0
+  - sprite: {fileID: 21300000, guid: 955718d0254618443a59b047c4b5f0f0, type: 3}
+    upgradeTimeSeconds: 60
+    upgradeCost:
+      food: 0
+      wood: 100
+      stone: 0
+      silver: 200
+    productionPerHour: 80
+  - sprite: {fileID: 21300000, guid: 9dd4c52d33b718642909060b2c538482, type: 3}
+    upgradeTimeSeconds: 120
     upgradeCost:
       food: 0
       wood: 0
       stone: 0
       silver: 0
-    productionPerHour: 0
-  - sprite: {fileID: 3957385486688363339, guid: 955718d0254618443a59b047c4b5f0f0, type: 3}
-    upgradeTimeSeconds: 0
-    upgradeCost:
-      food: 0
-      wood: 0
-      stone: 0
-      silver: 0
-    productionPerHour: 0
-  - sprite: {fileID: -4707141118859941456, guid: 9dd4c52d33b718642909060b2c538482, type: 3}
-    upgradeTimeSeconds: 0
-    upgradeCost:
-      food: 0
-      wood: 0
-      stone: 0
-      silver: 0
-    productionPerHour: 0
+    productionPerHour: 100

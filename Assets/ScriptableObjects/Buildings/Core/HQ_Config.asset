@@ -39,7 +39,7 @@ MonoBehaviour:
       silver: 100
     productionPerHour: 0
   - sprite: {fileID: 21300000, guid: 02219b842fbbabf458fd224664a7f38a, type: 3}
-    upgradeTimeSeconds: 0
+    upgradeTimeSeconds: 240
     upgradeCost:
       food: 0
       wood: 0

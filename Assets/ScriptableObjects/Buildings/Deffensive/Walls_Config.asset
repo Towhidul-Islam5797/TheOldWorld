@@ -13,20 +13,36 @@ MonoBehaviour:
   m_Name: Walls_Config
   m_EditorClassIdentifier: Assembly-CSharp::BuildingConfig
   buildingName: Walls
-  buildingType: 7
-  maxLevel: 3
-  upgradeTimeSeconds: 0
-  upgradeCost:
-    food: 0
-    wood: 120
-    stone: 120
-    gold: 0
+  buildingType: 8
   placementCost:
     food: 0
     wood: 60
     stone: 60
-    gold: 0
-  productionPerHour: 0
-  buildingSprite: {fileID: 0}
+    silver: 0
   footprintWidth: 1
   footprintHeight: 1
+  levels:
+  - sprite: {fileID: 0}
+    upgradeTimeSeconds: 60
+    upgradeCost:
+      food: 0
+      wood: 120
+      stone: 120
+      silver: 50
+    productionPerHour: 0
+  - sprite: {fileID: 0}
+    upgradeTimeSeconds: 0
+    upgradeCost:
+      food: 0
+      wood: 0
+      stone: 0
+      silver: 0
+    productionPerHour: 0
+  - sprite: {fileID: 0}
+    upgradeTimeSeconds: 0
+    upgradeCost:
+      food: 0
+      wood: 0
+      stone: 0
+      silver: 0
+    productionPerHour: 0

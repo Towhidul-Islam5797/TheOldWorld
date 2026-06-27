@@ -14,19 +14,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BuildingConfig
   buildingName: Academy
   buildingType: 6
-  maxLevel: 4
-  upgradeTimeSeconds: 90
-  upgradeCost:
-    food: 0
-    wood: 120
-    stone: 160
-    silver: 0
   placementCost:
     food: 0
-    wood: 60
-    stone: 80
-    silver: 0
-  productionPerHour: 0
-  buildingSprite: {fileID: 0}
+    wood: 100
+    stone: 100
+    silver: 50
   footprintWidth: 3
   footprintHeight: 3
+  levels:
+  - sprite: {fileID: 21300000, guid: 68a8f060f2b1d3546a5b76282af7147a, type: 3}
+    upgradeTimeSeconds: 120
+    upgradeCost:
+      food: 0
+      wood: 200
+      stone: 200
+      silver: 100
+    productionPerHour: 0
+  - sprite: {fileID: 21300000, guid: 5899a580c29c5aa4c94df8ca31049345, type: 3}
+    upgradeTimeSeconds: 240
+    upgradeCost:
+      food: 0
+      wood: 400
+      stone: 400
+      silver: 200
+    productionPerHour: 0
+  - sprite: {fileID: 21300000, guid: 4fed820a3554506428787aa9378c25e6, type: 3}
+    upgradeTimeSeconds: 480
+    upgradeCost:
+      food: 0
+      wood: 0
+      stone: 0
+      silver: 0
+    productionPerHour: 0
