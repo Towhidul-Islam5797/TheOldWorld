@@ -407,6 +407,7 @@ MonoBehaviour:
   woodText: {fileID: 677902990}
   stoneText: {fileID: 1058797275}
   silverText: {fileID: 686118422}
+  goldText: {fileID: 1922182548}
 --- !u!1 &104292061
 GameObject:
   m_ObjectHideFlags: 0
@@ -732,10 +733,12 @@ MonoBehaviour:
   wood: 0
   stone: 0
   silver: 0
+  gold: 0
   startFood: 1000
   startWood: 1000
   startStone: 1000
   startSilver: 100
+  startGold: 0
 --- !u!1 &219303735
 GameObject:
   m_ObjectHideFlags: 0
@@ -1283,9 +1286,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraController
   zoomSpeed: 0.5
-  minZoom: 3
-  maxZoom: 10
+  minZoom: 2
+  maxZoom: 15
+  startZoom: 8
   smoothing: 10
+  hudOffsetY: -0.5
 --- !u!1 &655120555
 GameObject:
   m_ObjectHideFlags: 0
