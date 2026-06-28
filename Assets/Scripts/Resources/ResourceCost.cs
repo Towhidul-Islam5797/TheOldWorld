@@ -22,6 +22,17 @@
 #endregion 
 
 #region Phase 1 Sprint 9 - Resource System Refactored Gold Renamed to Silver
+//[System.Serializable]
+//public class ResourceCost
+//{
+//    public float food;
+//    public float wood;
+//    public float stone;
+//    public float silver;
+//}
+#endregion
+
+#region Phase 2 Sprint 2 - Gold Added as Premium Currency
 [System.Serializable]
 public class ResourceCost
 {
@@ -29,5 +40,6 @@ public class ResourceCost
     public float wood;
     public float stone;
     public float silver;
+    public float gold;
 }
 #endregion

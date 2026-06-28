@@ -21,11 +21,22 @@
 //}
 #endregion
 #region Phase 1 Sprint 9 - Resource System Refactored Gold Renamed to Silver
+//public enum ResourceType
+//{
+//    Food,
+//    Wood,
+//    Stone,
+//    Silver //Gold
+//}
+#endregion
+
+#region Phase 2 Sprint 2 - Gold Added as Premium Currency
 public enum ResourceType
 {
     Food,
     Wood,
     Stone,
-    Silver //Gold
+    Silver,
+    Gold
 }
 #endregion

@@ -1,9 +1,10 @@
 #region Summary
-/// ResourceHUD listens to ResourceManager.OnResourceChanged and updates
-/// the four resource text fields on screen whenever resources change.
+/// ResourceHUD displays all 5 resources live on screen.
+/// Subscribes to ResourceManager.OnResourceChanged and updates text fields.
+/// Gold shows 0 until Phase 4 VIP system is implemented.
 #endregion
 
-#region Phase 2 Sprint 2 - Resource HUD
+#region Phase 2 Sprint 2 - Resource HUD With Gold
 using UnityEngine;
 using TMPro;
 
@@ -14,6 +15,7 @@ public class ResourceHUD : MonoBehaviour
     [SerializeField] private TextMeshProUGUI woodText;
     [SerializeField] private TextMeshProUGUI stoneText;
     [SerializeField] private TextMeshProUGUI silverText;
+    [SerializeField] private TextMeshProUGUI goldText;
 
     void Start()
     {
@@ -39,6 +41,7 @@ public class ResourceHUD : MonoBehaviour
         woodText.text = Mathf.FloorToInt(ResourceManager.Instance.wood).ToString();
         stoneText.text = Mathf.FloorToInt(ResourceManager.Instance.stone).ToString();
         silverText.text = Mathf.FloorToInt(ResourceManager.Instance.silver).ToString();
+        goldText.text = Mathf.FloorToInt(ResourceManager.Instance.gold).ToString();
     }
 }
 #endregion
