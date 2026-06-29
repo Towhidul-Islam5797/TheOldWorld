@@ -19,6 +19,7 @@ MonoBehaviour:
     wood: 0
     stone: 0
     silver: 0
+    gold: 0
   footprintWidth: 4
   footprintHeight: 4
   levels:
@@ -29,6 +30,7 @@ MonoBehaviour:
       wood: 100
       stone: 100
       silver: 50
+      gold: 0
     productionPerHour: 0
   - sprite: {fileID: 21300000, guid: db098407ab627f04592f4e6b43527b7b, type: 3}
     upgradeTimeSeconds: 120
@@ -37,6 +39,7 @@ MonoBehaviour:
       wood: 200
       stone: 200
       silver: 100
+      gold: 0
     productionPerHour: 0
   - sprite: {fileID: 21300000, guid: 02219b842fbbabf458fd224664a7f38a, type: 3}
     upgradeTimeSeconds: 240
@@ -45,4 +48,5 @@ MonoBehaviour:
       wood: 0
       stone: 0
       silver: 0
+      gold: 0
     productionPerHour: 0
