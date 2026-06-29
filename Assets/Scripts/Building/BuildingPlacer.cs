@@ -377,7 +377,144 @@
 #endregion
 
 #region Phase 2 Sprint 3 - Building Placer With Interaction Popup
+//using UnityEngine;
+//using System.Collections.Generic;
+//public class BuildingPlacer : MonoBehaviour
+//{
+//    [SerializeField] private BuildingConfig selectedConfig;
+//    private static readonly Color colorValid = new Color(0.2f, 0.9f, 0.2f, 0.6f);
+//    private static readonly Color colorInvalid = new Color(0.9f, 0.2f, 0.2f, 0.6f);
+//    private bool placeMode;
+//    private TileGridRenderer gridRenderer;
+//    private CameraController cameraController;
+//    private readonly List<Vector2Int> paintedTiles = new List<Vector2Int>();
+//    private int previewOriginX = int.MinValue;
+//    private int previewOriginY = int.MinValue;
+
+//    void Start()
+//    {
+//        gridRenderer = FindFirstObjectByType<TileGridRenderer>();
+//        cameraController = FindFirstObjectByType<CameraController>();
+//    }
+
+//    void Update()
+//    {
+//        if (Input.GetKeyDown(KeyCode.B))
+//        {
+//            placeMode = !placeMode;
+//            if (!placeMode) ClearPreview();
+//            Debug.Log("Place mode: " + placeMode);
+//        }
+
+//        if (Input.GetKeyDown(KeyCode.Escape))
+//        {
+//            placeMode = false;
+//            ClearPreview();
+//            BuildingInteraction.Instance.Deselect();
+//        }
+
+//        if (placeMode && selectedConfig != null)
+//            UpdatePreview();
+
+//        if (Input.GetMouseButtonUp(0) && !cameraController.IsDragging)
+//            HandleClick();
+//    }
+
+//    void UpdatePreview()
+//    {
+//        Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+//        worldPos.z = 0;
+//        gridRenderer.GetGridCoordinates(worldPos, out int x, out int y);
+//        if (x == previewOriginX && y == previewOriginY) return;
+//        ClearPreview();
+//        previewOriginX = x;
+//        previewOriginY = y;
+//        bool valid = IsFootprintValid(x, y);
+//        Color highlight = valid ? colorValid : colorInvalid;
+//        for (int dx = 0; dx < selectedConfig.footprintWidth; dx++)
+//        {
+//            for (int dy = 0; dy < selectedConfig.footprintHeight; dy++)
+//            {
+//                int tx = x + dx;
+//                int ty = y + dy;
+//                if (gridRenderer.Grid.GetTile(tx, ty) != null)
+//                {
+//                    gridRenderer.SetTileColor(tx, ty, highlight);
+//                    paintedTiles.Add(new Vector2Int(tx, ty));
+//                }
+//            }
+//        }
+//    }
+
+//    void ClearPreview()
+//    {
+//        foreach (Vector2Int tile in paintedTiles)
+//            gridRenderer.RefreshTile(tile.x, tile.y);
+//        paintedTiles.Clear();
+//        previewOriginX = int.MinValue;
+//        previewOriginY = int.MinValue;
+//    }
+
+//    bool IsFootprintValid(int x, int y)
+//    {
+//        for (int dx = 0; dx < selectedConfig.footprintWidth; dx++)
+//        {
+//            for (int dy = 0; dy < selectedConfig.footprintHeight; dy++)
+//            {
+//                TileData tile = gridRenderer.Grid.GetTile(x + dx, y + dy);
+//                if (tile == null || tile.tileType != TileType.Empty)
+//                    return false;
+//            }
+//        }
+//        return true;
+//    }
+
+//    void HandleClick()
+//    {
+//        Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+//        worldPos.z = 0;
+//        gridRenderer.GetGridCoordinates(worldPos, out int x, out int y);
+
+//        if (placeMode)
+//        {
+//            if (selectedConfig == null) return;
+//            bool placed = BuildingManager.Instance.PlaceBuilding(selectedConfig, x, y);
+//            if (placed)
+//            {
+//                ClearPreview();
+//                placeMode = false;
+//            }
+//        }
+//        else
+//        {
+//            TileData tile = gridRenderer.Grid.GetTile(x, y);
+//            if (tile == null) return;
+
+//            if (tile.occupant != null)
+//            {
+//                // Open popup instead of auto-upgrading
+//                BuildingInteraction.Instance.SelectBuilding(tile.occupant);
+//            }
+//            else
+//            {
+//                // Tapped empty ground — close popup
+//                BuildingInteraction.Instance.Deselect();
+//            }
+//        }
+//    }
+
+//    public void SetBuilding(BuildingConfig config)
+//    {
+//        selectedConfig = config;
+//        placeMode = true;
+//    }
+//}
+#endregion
+
+
+#region Phase 2 Sprint 4 - Building Placer With UI Click Guard
 using UnityEngine;
+using UnityEngine.EventSystems;
 using System.Collections.Generic;
 public class BuildingPlacer : MonoBehaviour
 {
@@ -471,6 +608,10 @@ public class BuildingPlacer : MonoBehaviour
 
     void HandleClick()
     {
+        // Ignore clicks that hit UI elements — prevents popup buttons from also triggering grid clicks
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+            return;
+
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         worldPos.z = 0;
         gridRenderer.GetGridCoordinates(worldPos, out int x, out int y);
@@ -491,15 +632,9 @@ public class BuildingPlacer : MonoBehaviour
             if (tile == null) return;
 
             if (tile.occupant != null)
-            {
-                // Open popup instead of auto-upgrading
                 BuildingInteraction.Instance.SelectBuilding(tile.occupant);
-            }
             else
-            {
-                // Tapped empty ground — close popup
                 BuildingInteraction.Instance.Deselect();
-            }
         }
     }
 
