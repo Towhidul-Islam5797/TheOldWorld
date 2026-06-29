@@ -60,8 +60,55 @@
 #endregion
 
 #region Phase 2 Sprint 1 - Building State With Per-Level Data
-using UnityEngine;
+//using UnityEngine;
  
+//public class BuildingState
+//{
+//    public BuildingConfig config;
+//    public int level;
+//    public bool isUpgrading;
+//    public float upgradeEndTime;
+//    public int tileX;
+//    public int tileY;
+
+//    public BuildingState(BuildingConfig config, int x, int y)
+//    {
+//        this.config = config;
+//        level = 1;
+//        tileX = x;
+//        tileY = y;
+//    }
+
+//    public bool CanUpgrade(int hqLevel)
+//    {
+//        if (isUpgrading) return false;
+//        if (level >= config.maxLevel) return false;
+//        if (config.buildingType != BuildingType.HQ && level >= hqLevel) return false;
+//        return true;
+//    }
+
+//    public void StartUpgrade()
+//    {
+//        isUpgrading = true;
+//        float upgradeTime = config.GetLevel(level).upgradeTimeSeconds;
+//        upgradeEndTime = Time.time + upgradeTime;
+//    }
+
+//    public void CheckUpgradeComplete()
+//    {
+//        if (!isUpgrading) return;
+//        if (Time.time >= upgradeEndTime)
+//        {
+//            level++;
+//            isUpgrading = false;
+//            Debug.Log(config.buildingName + " upgrade complete. Now level " + level);
+//        }
+//    }
+//}
+#endregion
+
+#region Phase 2 Sprint 3 - Building State With Cancel Upgrade
+using UnityEngine;
 public class BuildingState
 {
     public BuildingConfig config;
@@ -92,6 +139,12 @@ public class BuildingState
         isUpgrading = true;
         float upgradeTime = config.GetLevel(level).upgradeTimeSeconds;
         upgradeEndTime = Time.time + upgradeTime;
+    }
+
+    public void CancelUpgrade()
+    {
+        isUpgrading = false;
+        upgradeEndTime = 0f;
     }
 
     public void CheckUpgradeComplete()

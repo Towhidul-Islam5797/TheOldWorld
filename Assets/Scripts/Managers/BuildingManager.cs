@@ -330,18 +330,166 @@
 #endregion
 
 #region Phase 2 Sprint 1 - Building Manager With Level Sprites
+//using System.Collections.Generic;
+//using UnityEngine;
+
+//public class BuildingManager : MonoBehaviour
+//{
+//    public static BuildingManager Instance;
+
+//    private TileGrid grid;
+//    private TileGridRenderer gridRenderer;
+//    private List<BuildingState> allBuildings = new List<BuildingState>();
+
+//    // Tracks the sprite GameObject for each building so we can swap it on upgrade
+//    private Dictionary<BuildingState, GameObject> buildingSprites = new Dictionary<BuildingState, GameObject>();
+
+//    void Awake()
+//    {
+//        Instance = this;
+//    }
+
+//    void Start()
+//    {
+//        gridRenderer = FindFirstObjectByType<TileGridRenderer>();
+//        grid = gridRenderer.Grid;
+//    }
+
+//    public int GetHQLevel()
+//    {
+//        foreach (BuildingState b in allBuildings)
+//            if (b.config.buildingType == BuildingType.HQ) return b.level;
+//        return 0;
+//    }
+
+//    public List<BuildingState> GetAllBuildings()
+//    {
+//        return allBuildings;
+//    }
+
+//    public bool PlaceBuilding(BuildingConfig config, int x, int y)
+//    {
+//        for (int dx = 0; dx < config.footprintWidth; dx++)
+//        {
+//            for (int dy = 0; dy < config.footprintHeight; dy++)
+//            {
+//                TileData tile = grid.GetTile(x + dx, y + dy);
+//                if (tile == null || tile.tileType != TileType.Empty)
+//                {
+//                    Debug.Log("Cannot place: tile unavailable at (" + (x + dx) + ", " + (y + dy) + ")");
+//                    return false;
+//                }
+//            }
+//        }
+
+//        if (!ResourceManager.Instance.CanAfford(config.placementCost))
+//        {
+//            Debug.Log("Cannot place: not enough resources");
+//            return false;
+//        }
+
+//        ResourceManager.Instance.Deduct(config.placementCost);
+
+//        BuildingState building = new BuildingState(config, x, y);
+
+//        for (int dx = 0; dx < config.footprintWidth; dx++)
+//        {
+//            for (int dy = 0; dy < config.footprintHeight; dy++)
+//            {
+//                TileData tile = grid.GetTile(x + dx, y + dy);
+//                tile.tileType = TileType.Occupied;
+//                tile.occupant = building;
+//                gridRenderer.RefreshTile(x + dx, y + dy);
+//            }
+//        }
+
+//        allBuildings.Add(building);
+//        SpawnBuildingSprite(building, x, y);
+
+//        Debug.Log("Placed " + config.buildingName + " at (" + x + ", " + y + ")");
+//        return true;
+//    }
+
+//    private void SpawnBuildingSprite(BuildingState building, int x, int y)
+//    {
+//        Sprite sprite = building.config.GetLevel(building.level).sprite;
+//        if (sprite == null) return;
+
+//        Vector3 bottomLeft = gridRenderer.GridToWorld(x, y);
+//        Vector3 topRight = gridRenderer.GridToWorld(
+//            x + building.config.footprintWidth - 1,
+//            y + building.config.footprintHeight - 1);
+//        Vector3 center = (bottomLeft + topRight) * 0.5f;
+
+//        GameObject spriteObj = new GameObject("BuildingSprite_" + building.config.buildingName);
+//        spriteObj.transform.position = center;
+
+//        SpriteRenderer sr = spriteObj.AddComponent<SpriteRenderer>();
+//        sr.sprite = sprite;
+//        sr.sortingLayerName = "Buildings";
+//        sr.sortingOrder = -(int)(center.y * 100);
+
+//        buildingSprites[building] = spriteObj;
+//    }
+
+//    private void UpdateBuildingSprite(BuildingState building)
+//    {
+//        if (!buildingSprites.ContainsKey(building)) return;
+//        Sprite sprite = building.config.GetLevel(building.level).sprite;
+//        if (sprite == null) return;
+//        buildingSprites[building].GetComponent<SpriteRenderer>().sprite = sprite;
+//    }
+
+//    public bool UpgradeBuilding(int x, int y)
+//    {
+//        TileData tile = grid.GetTile(x, y);
+//        if (tile == null || tile.occupant == null) return false;
+
+//        BuildingState building = tile.occupant;
+//        int hqLevel = GetHQLevel();
+
+//        if (!building.CanUpgrade(hqLevel))
+//        {
+//            Debug.Log("Cannot upgrade " + building.config.buildingName + " level " + building.level);
+//            return false;
+//        }
+
+//        ResourceCost upgradeCost = building.config.GetLevel(building.level).upgradeCost;
+//        if (!ResourceManager.Instance.CanAfford(upgradeCost))
+//        {
+//            Debug.Log("Cannot upgrade: not enough resources");
+//            return false;
+//        }
+
+//        ResourceManager.Instance.Deduct(upgradeCost);
+//        building.StartUpgrade();
+
+//        Debug.Log("Upgrading " + building.config.buildingName + " to level " + (building.level + 1));
+//        return true;
+//    }
+
+//    void Update()
+//    {
+//        foreach (BuildingState b in allBuildings)
+//        {
+//            bool wasUpgrading = b.isUpgrading;
+//            b.CheckUpgradeComplete();
+//            if (wasUpgrading && !b.isUpgrading)
+//                UpdateBuildingSprite(b);
+//        }
+//    }
+//}
+#endregion
+
+#region Phase 2 Sprint 3 - Building Manager With Popup Support
 using System.Collections.Generic;
 using UnityEngine;
-
 public class BuildingManager : MonoBehaviour
 {
     public static BuildingManager Instance;
-
     private TileGrid grid;
     private TileGridRenderer gridRenderer;
     private List<BuildingState> allBuildings = new List<BuildingState>();
-
-    // Tracks the sprite GameObject for each building so we can swap it on upgrade
     private Dictionary<BuildingState, GameObject> buildingSprites = new Dictionary<BuildingState, GameObject>();
 
     void Awake()
@@ -367,6 +515,19 @@ public class BuildingManager : MonoBehaviour
         return allBuildings;
     }
 
+    public BuildingState GetBuildingAt(int x, int y)
+    {
+        TileData tile = grid.GetTile(x, y);
+        if (tile == null) return null;
+        return tile.occupant;
+    }
+
+    public Vector3 GetBuildingWorldPosition(BuildingState building)
+    {
+        if (!buildingSprites.ContainsKey(building)) return Vector3.zero;
+        return buildingSprites[building].transform.position;
+    }
+
     public bool PlaceBuilding(BuildingConfig config, int x, int y)
     {
         for (int dx = 0; dx < config.footprintWidth; dx++)
@@ -389,7 +550,6 @@ public class BuildingManager : MonoBehaviour
         }
 
         ResourceManager.Instance.Deduct(config.placementCost);
-
         BuildingState building = new BuildingState(config, x, y);
 
         for (int dx = 0; dx < config.footprintWidth; dx++)
@@ -405,7 +565,6 @@ public class BuildingManager : MonoBehaviour
 
         allBuildings.Add(building);
         SpawnBuildingSprite(building, x, y);
-
         Debug.Log("Placed " + config.buildingName + " at (" + x + ", " + y + ")");
         return true;
     }
@@ -423,12 +582,10 @@ public class BuildingManager : MonoBehaviour
 
         GameObject spriteObj = new GameObject("BuildingSprite_" + building.config.buildingName);
         spriteObj.transform.position = center;
-
         SpriteRenderer sr = spriteObj.AddComponent<SpriteRenderer>();
         sr.sprite = sprite;
         sr.sortingLayerName = "Buildings";
         sr.sortingOrder = -(int)(center.y * 100);
-
         buildingSprites[building] = spriteObj;
     }
 
@@ -444,7 +601,6 @@ public class BuildingManager : MonoBehaviour
     {
         TileData tile = grid.GetTile(x, y);
         if (tile == null || tile.occupant == null) return false;
-
         BuildingState building = tile.occupant;
         int hqLevel = GetHQLevel();
 
@@ -463,9 +619,26 @@ public class BuildingManager : MonoBehaviour
 
         ResourceManager.Instance.Deduct(upgradeCost);
         building.StartUpgrade();
-
         Debug.Log("Upgrading " + building.config.buildingName + " to level " + (building.level + 1));
         return true;
+    }
+
+    public void CancelUpgrade(int x, int y)
+    {
+        TileData tile = grid.GetTile(x, y);
+        if (tile == null || tile.occupant == null) return;
+        BuildingState building = tile.occupant;
+        if (!building.isUpgrading) return;
+
+        // Refund the upgrade cost resources one by one
+        ResourceCost cost = building.config.GetLevel(building.level).upgradeCost;
+        ResourceManager.Instance.Add(ResourceType.Food, cost.food);
+        ResourceManager.Instance.Add(ResourceType.Wood, cost.wood);
+        ResourceManager.Instance.Add(ResourceType.Stone, cost.stone);
+        ResourceManager.Instance.Add(ResourceType.Silver, cost.silver);
+
+        building.CancelUpgrade();
+        Debug.Log("Cancelled upgrade on " + building.config.buildingName);
     }
 
     void Update()
