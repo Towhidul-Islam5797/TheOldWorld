@@ -23,7 +23,7 @@ MonoBehaviour:
   footprintWidth: 3
   footprintHeight: 3
   levels:
-  - sprite: {fileID: 0}
+  - sprite: {fileID: 21300000, guid: 78490ecbed07d484daba0bb75a40baac, type: 3}
     upgradeTimeSeconds: 120
     upgradeCost:
       food: 0
@@ -32,7 +32,7 @@ MonoBehaviour:
       silver: 50
       gold: 0
     productionPerHour: 0
-  - sprite: {fileID: 0}
+  - sprite: {fileID: 21300000, guid: ef607db4546643349b46cc1242f7c6e6, type: 3}
     upgradeTimeSeconds: 240
     upgradeCost:
       food: 0
@@ -41,7 +41,7 @@ MonoBehaviour:
       silver: 100
       gold: 0
     productionPerHour: 0
-  - sprite: {fileID: 0}
+  - sprite: {fileID: 21300000, guid: 83df1b462e494d4448f4e17776f176ba, type: 3}
     upgradeTimeSeconds: 480
     upgradeCost:
       food: 0

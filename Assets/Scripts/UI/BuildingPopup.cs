@@ -199,6 +199,7 @@ public class BuildingPopup : MonoBehaviour
     [Header("Page 2 - Build Menu")]
     [SerializeField] private GameObject page2;
     [SerializeField] private BuildMenuPage buildMenuPage;
+    [SerializeField] private Image page2LevelBadgeImage;
 
     [Header("Position")]
     [SerializeField] private float popupYOffset = 120f;
@@ -236,7 +237,10 @@ public class BuildingPopup : MonoBehaviour
         buildingNameText.text = building.config.buildingName;
 
         int badgeIndex = Mathf.Clamp(building.level - 1, 0, levelBadgeSprites.Length - 1);
-        levelBadgeImage.sprite = levelBadgeSprites[badgeIndex];
+        Sprite badgeSprite = levelBadgeSprites[badgeIndex];
+        levelBadgeImage.sprite = badgeSprite;
+        if (page2LevelBadgeImage != null)
+            page2LevelBadgeImage.sprite = badgeSprite;
 
         ShowPage1();
         popupRoot.SetActive(true);
@@ -244,7 +248,6 @@ public class BuildingPopup : MonoBehaviour
 
     public void Hide()
     {
-        Debug.Log("Hide called from: " + System.Environment.StackTrace);
         currentBuilding = null;
         popupRoot.SetActive(false);
     }
@@ -350,7 +353,7 @@ public class BuildingPopup : MonoBehaviour
         }
     }
 
-    // Page 2 back button — wired via Inspector OnClick
+    // Page 2 dedicated Back button — wired via Inspector OnClick
     public void OnBackClicked()
     {
         ShowPage1();

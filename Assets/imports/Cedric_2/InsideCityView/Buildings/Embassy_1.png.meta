@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 83df1b462e494d4448f4e17776f176ba
+guid: 78490ecbed07d484daba0bb75a40baac
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7354346031973732622
-    second: building13_3_0
+      213: 4232096012008530102
+    second: building13_1_0
+  - first:
+      213: -8219042621509831134
+    second: building13_1_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +54,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 9
   spritePivot: {x: 0.5, y: 0.25}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 272
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -152,23 +155,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: building13_3_0
+      name: building13_1_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 28
-        width: 777
-        height: 657
+        x: 363
+        y: 623
+        width: 6
+        height: 29
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e01191740c2ef0660800000000000000
-      internalID: 7354346031973732622
+      spriteID: 6b0ad1b76ec6bba30800000000000000
+      internalID: 4232096012008530102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: building13_1_1
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 30
+        width: 771
+        height: 578
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2267c17384810fd80800000000000000
+      internalID: -8219042621509831134
       vertices: []
       indices: 
       edges: []
@@ -185,11 +210,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      building13_3_0: 7354346031973732622
+      building13_1_0: 4232096012008530102
+      building13_1_1: -8219042621509831134
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

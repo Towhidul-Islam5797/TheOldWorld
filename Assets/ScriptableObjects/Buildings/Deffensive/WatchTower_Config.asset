@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae4c8b3b86ec50489057ab7b28d6ad8, type: 3}
   m_Name: WatchTower_Config
   m_EditorClassIdentifier: Assembly-CSharp::BuildingConfig
-  buildingName: WatchTower
+  buildingName: Watch Tower
   buildingType: 9
   placementCost:
     food: 0
