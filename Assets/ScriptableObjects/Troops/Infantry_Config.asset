@@ -15,12 +15,27 @@ MonoBehaviour:
   troopName: Infantry
   troopType: 0
   requiredBarracksLevel: 1
-  baseAttack: 8
-  baseDefense: 12
-  baseHealth: 16
   trainingCostPerUnit:
     food: 50
     wood: 20
     stone: 0
     silver: 10
+    gold: 0
   trainingTimeSecondsPerUnit: 30
+  levels:
+  - icon: {fileID: 21300000, guid: 4663da68221439c4d8d363f0262a3ea1, type: 3}
+    baseAttack: 8
+    baseDefense: 12
+    baseHealth: 16
+  - icon: {fileID: 21300000, guid: 84e47c4b04079dd40b895a05b6f1c696, type: 3}
+    baseAttack: 12
+    baseDefense: 19
+    baseHealth: 25
+  - icon: {fileID: 21300000, guid: 0114c43729f41bc428490002425ef914, type: 3}
+    baseAttack: 20
+    baseDefense: 30
+    baseHealth: 40
+  - icon: {fileID: 21300000, guid: 080fb74c57ee38746b849f50c7ebda05, type: 3}
+    baseAttack: 42
+    baseDefense: 58
+    baseHealth: 74

@@ -15,12 +15,27 @@ MonoBehaviour:
   troopName: Cavalry
   troopType: 2
   requiredBarracksLevel: 3
-  baseAttack: 14
-  baseDefense: 10
-  baseHealth: 11
   trainingCostPerUnit:
     food: 60
     wood: 0
     stone: 0
     silver: 40
+    gold: 0
   trainingTimeSecondsPerUnit: 45
+  levels:
+  - icon: {fileID: 21300000, guid: fd29d5aab9c7f9845a061ffcbcc26604, type: 3}
+    baseAttack: 14
+    baseDefense: 10
+    baseHealth: 11
+  - icon: {fileID: 21300000, guid: 2ca70365ad03cc845bea5c9fec212652, type: 3}
+    baseAttack: 22
+    baseDefense: 16
+    baseHealth: 17
+  - icon: {fileID: 21300000, guid: a40d43cb0051c894f9f731b1de765dfe, type: 3}
+    baseAttack: 35
+    baseDefense: 25
+    baseHealth: 27
+  - icon: {fileID: 21300000, guid: 7028fdfaf369ba440b63e48c7c9c2ad1, type: 3}
+    baseAttack: 66
+    baseDefense: 50
+    baseHealth: 54

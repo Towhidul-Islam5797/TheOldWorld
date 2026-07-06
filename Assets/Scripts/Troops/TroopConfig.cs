@@ -42,19 +42,59 @@
 //}
 #endregion
 #region Client Revision - Barracks Level Gating
+//using UnityEngine;
+
+//[CreateAssetMenu(fileName = "TroopConfig", menuName = "TheOldWorld/TroopConfig")]
+//public class TroopConfig : ScriptableObject
+//{
+//    public string troopName;
+//    public TroopType troopType;
+//    [Tooltip("Minimum Barracks level required to train this troop. Infantry=1, Archers=2, Cavalry=3, Siege=4")]
+//    public int requiredBarracksLevel;
+//    public int baseAttack;
+//    public int baseDefense;
+//    public int baseHealth;
+//    public ResourceCost trainingCostPerUnit;
+//    public float trainingTimeSecondsPerUnit;
+//}
+#endregion
+
+#region Phase 2 Sprint 5 - Troop Configuration With Per-Level Data
 using UnityEngine;
+
+[System.Serializable]
+public class TroopLevelData
+{
+    public Sprite icon;
+    public int baseAttack;
+    public int baseDefense;
+    public int baseHealth;
+}
 
 [CreateAssetMenu(fileName = "TroopConfig", menuName = "TheOldWorld/TroopConfig")]
 public class TroopConfig : ScriptableObject
 {
+    [Header("Identity")]
     public string troopName;
     public TroopType troopType;
-    [Tooltip("Minimum Barracks level required to train this troop. Infantry=1, Archers=2, Cavalry=3, Siege=4")]
+
+    [Header("Unlock")]
+    [Tooltip("Minimum Barracks level required to train this troop at Level 1. Infantry=1, Archers=2, Cavalry=3, Siege=4")]
     public int requiredBarracksLevel;
-    public int baseAttack;
-    public int baseDefense;
-    public int baseHealth;
+
+    [Header("Training (Level 1 only)")]
     public ResourceCost trainingCostPerUnit;
     public float trainingTimeSecondsPerUnit;
+
+    [Header("Levels")]
+    public TroopLevelData[] levels;
+
+    public int maxLevel => levels.Length;
+
+    public TroopLevelData GetLevel(int level)
+    {
+        int index = Mathf.Clamp(level - 1, 0, levels.Length - 1);
+        return levels[index];
+    }
 }
 #endregion
