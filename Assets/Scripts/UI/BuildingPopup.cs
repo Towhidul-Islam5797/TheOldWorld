@@ -546,7 +546,9 @@ public class BuildingPopup : MonoBehaviour
                 Debug.Log("Open Research panel");
                 break;
             case BuildingType.Forge:
-                Debug.Log("Open Craft panel");
+                BuildingState forge = currentBuilding;
+                Hide();
+                ForgePopup.Instance.Show(forge);
                 break;
         }
     }

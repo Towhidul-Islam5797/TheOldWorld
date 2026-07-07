@@ -143,8 +143,8 @@ public class BanditCampManager : MonoBehaviour
             if (material != null)
             {
                 report.materialsLooted[material] = 1;
-                Debug.Log("Crafting material dropped: " + material +
-                          " Lvl" + camp.level);
+                MaterialInventory.Instance.Add(material, 1);
+                Debug.Log("Crafting material dropped: " + material + " Lvl" + camp.level);
             }
 
             // Clear camp and start respawn timer
