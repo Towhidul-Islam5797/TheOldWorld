@@ -89,7 +89,6 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private GameObject panelRankings;
     [SerializeField] private GameObject panelEvents;
     [SerializeField] private GameObject panelQuests;
-    [SerializeField] private GameObject panelTraining;
 
     void Awake()
     {
@@ -110,7 +109,6 @@ public class HUDManager : MonoBehaviour
     public void OpenRankings() { OpenPanel(panelRankings); }
     public void OpenEvents() { OpenPanel(panelEvents); }
     public void OpenQuests() { OpenPanel(panelQuests); }
-    public void OpenTraining() { OpenPanel(panelTraining); }
 
     public void CloseAll()
     {
@@ -121,7 +119,6 @@ public class HUDManager : MonoBehaviour
         Hide(panelRankings);
         Hide(panelEvents);
         Hide(panelQuests);
-        Hide(panelTraining);
     }
 
     private void OpenPanel(GameObject panel)

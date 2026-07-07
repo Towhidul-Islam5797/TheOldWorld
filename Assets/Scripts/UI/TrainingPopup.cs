@@ -1,12 +1,16 @@
-#region Phase 2 Sprint 5 - Training Panel
-#region Phase 2 Sprint 5 - Training Panel
+#region Phase 2 Sprint 5 - Training Popup
 using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class TrainingPanel : MonoBehaviour
+public class TrainingPopup : MonoBehaviour
 {
+    public static TrainingPopup Instance;
+
+    [Header("Popup Root")]
+    [SerializeField] private GameObject popupRoot;
+
     [Header("Troop Data")]
     [SerializeField] private TroopConfig[] availableTroops;
 
@@ -41,6 +45,12 @@ public class TrainingPanel : MonoBehaviour
 
     private TroopConfig selectedTroop;
     private int quantity = 1;
+    private BuildingState sourceBarracks;
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
@@ -48,21 +58,36 @@ public class TrainingPanel : MonoBehaviour
         minusButton.onClick.AddListener(OnMinusClicked);
         plusButton.onClick.AddListener(OnPlusClicked);
         trainButton.onClick.AddListener(OnTrainClicked);
-        ClearInfoPanel();
-    }
-
-    void OnEnable()
-    {
-        RefreshCards();
-        ClearInfoPanel();
-        quantity = 1;
-        UpdateQuantityText();
+        Hide();
     }
 
     void Update()
     {
-        if (!gameObject.activeInHierarchy) return;
+        if (!popupRoot.activeSelf) return;
         RefreshQueueDisplay();
+    }
+
+    public void Show(BuildingState barracks)
+    {
+        sourceBarracks = barracks;
+        RefreshCards();
+        ClearInfoPanel();
+        quantity = 1;
+        UpdateQuantityText();
+        popupRoot.SetActive(true);
+    }
+
+    public void Hide()
+    {
+        popupRoot.SetActive(false);
+    }
+
+    public void OnBackClicked()
+    {
+        Debug.Log("Back clicked. sourceBarracks: " + (sourceBarracks == null ? "NULL" : sourceBarracks.config.buildingName));
+        Hide();
+        if (sourceBarracks != null)
+            BuildingInteraction.Instance.SelectBuilding(sourceBarracks);
     }
 
     private void SetupCards()
@@ -97,7 +122,7 @@ public class TrainingPanel : MonoBehaviour
 
     private void RefreshCards()
     {
-        int barracksLevel = GetBarracksLevel();
+        int barracksLevel = sourceBarracks != null ? sourceBarracks.level : 0;
 
         for (int i = 0; i < cardContainer.childCount; i++)
         {
@@ -193,7 +218,6 @@ public class TrainingPanel : MonoBehaviour
     private void RefreshQueueDisplay()
     {
         TrainingJob[] jobs = TrainingManager.Instance.GetQueueSnapshot();
-
         UpdateQueueSlot(0, jobs, queueSlot1, slot1Icon, slot1Label, slot1Timer);
         UpdateQueueSlot(1, jobs, queueSlot2, slot2Icon, slot2Label, slot2Timer);
     }
@@ -224,13 +248,6 @@ public class TrainingPanel : MonoBehaviour
         }
     }
 
-    private int GetBarracksLevel()
-    {
-        foreach (BuildingState b in BuildingManager.Instance.GetAllBuildings())
-            if (b.config.buildingType == BuildingType.Barracks) return b.level;
-        return 0;
-    }
-
     private string GetCostString(ResourceCost cost)
     {
         string result = "";
@@ -241,5 +258,4 @@ public class TrainingPanel : MonoBehaviour
         return result.Trim();
     }
 }
-#endregion
 #endregion

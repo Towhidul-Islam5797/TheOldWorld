@@ -361,7 +361,7 @@
 //}
 #endregion
 
-#region Phase 2 Sprint 5 - Building Popup With Training Panel Hook
+#region Phase 2 Sprint 5 - Building Popup
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -423,10 +423,8 @@ public class BuildingPopup : MonoBehaviour
     void Update()
     {
         if (currentBuilding == null) return;
-
         Vector3 screenPos = Camera.main.WorldToScreenPoint(anchorWorldPos);
         popupRectTransform.position = screenPos + new Vector3(0, popupYOffset, 0);
-
         RefreshButtons();
     }
 
@@ -434,7 +432,6 @@ public class BuildingPopup : MonoBehaviour
     {
         currentBuilding = building;
         anchorWorldPos = worldPos;
-
         buildingNameText.text = building.config.buildingName;
 
         int badgeIndex = Mathf.Clamp(building.level - 1, 0, levelBadgeSprites.Length - 1);
@@ -472,7 +469,6 @@ public class BuildingPopup : MonoBehaviour
         if (currentBuilding == null) return;
 
         bool isUpgrading = currentBuilding.isUpgrading;
-
         upgradeButton.SetActive(!isUpgrading);
         cancelUpgradeButton.SetActive(isUpgrading);
 
@@ -513,7 +509,6 @@ public class BuildingPopup : MonoBehaviour
         }
     }
 
-    // Wired via Inspector OnClick
     public void OnUpgradeClicked()
     {
         if (currentBuilding == null) return;
@@ -543,8 +538,9 @@ public class BuildingPopup : MonoBehaviour
                 ShowPage2();
                 break;
             case BuildingType.Barracks:
-                BuildingInteraction.Instance.Deselect();
-                HUDManager.Instance.OpenTraining();
+                BuildingState barracks = currentBuilding;
+                Hide();
+                TrainingPopup.Instance.Show(barracks);
                 break;
             case BuildingType.Academy:
                 Debug.Log("Open Research panel");
@@ -555,7 +551,6 @@ public class BuildingPopup : MonoBehaviour
         }
     }
 
-    // Page 2 back button — wired via Inspector OnClick
     public void OnBackClicked()
     {
         ShowPage1();
