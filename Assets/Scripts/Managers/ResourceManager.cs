@@ -426,6 +426,115 @@
 #endregion
 
 #region Phase 2 Sprint 2 - Resource Manager With Gold
+//using UnityEngine;
+//using System;
+
+//public class ResourceManager : MonoBehaviour
+//{
+//    public static ResourceManager Instance;
+
+//    [Header("Current Resources")]
+//    public float food;
+//    public float wood;
+//    public float stone;
+//    public float silver;
+//    public float gold;
+
+//    [Header("Starting Resources")]
+//    [SerializeField] private float startFood = 1000f;
+//    [SerializeField] private float startWood = 1000f;
+//    [SerializeField] private float startStone = 1000f;
+//    [SerializeField] private float startSilver = 100f;
+//    [SerializeField] private float startGold = 0f;
+
+//    private const float tickIntervalSeconds = 60f;
+//    private float tickTimer;
+
+//    public event Action OnResourceChanged;
+
+//    void Awake()
+//    {
+//        Instance = this;
+//    }
+
+//    void Start()
+//    {
+//        food = startFood;
+//        wood = startWood;
+//        stone = startStone;
+//        silver = startSilver;
+//        gold = startGold;
+//        OnResourceChanged?.Invoke();
+//    }
+
+//    void Update()
+//    {
+//        tickTimer += Time.deltaTime;
+//        if (tickTimer >= tickIntervalSeconds)
+//        {
+//            tickTimer = 0f;
+//            RunProductionTick();
+//        }
+//    }
+
+//    void RunProductionTick()
+//    {
+//        if (BuildingManager.Instance == null) return;
+
+//        foreach (BuildingState b in BuildingManager.Instance.GetAllBuildings())
+//        {
+//            if (b.isUpgrading) continue;
+
+//            float productionPerHour = b.config.GetLevel(b.level).productionPerHour;
+//            if (productionPerHour <= 0f) continue;
+
+//            float amountPerTick = productionPerHour / 60f;
+
+//            switch (b.config.buildingType)
+//            {
+//                case BuildingType.Farm: Add(ResourceType.Food, amountPerTick); break;
+//                case BuildingType.LumberMill: Add(ResourceType.Wood, amountPerTick); break;
+//                case BuildingType.Quarry: Add(ResourceType.Stone, amountPerTick); break;
+//                case BuildingType.SilverMine: Add(ResourceType.Silver, amountPerTick); break;
+//            }
+//        }
+//    }
+
+//    public void Add(ResourceType type, float amount)
+//    {
+//        switch (type)
+//        {
+//            case ResourceType.Food: food += amount; break;
+//            case ResourceType.Wood: wood += amount; break;
+//            case ResourceType.Stone: stone += amount; break;
+//            case ResourceType.Silver: silver += amount; break;
+//            case ResourceType.Gold: gold += amount; break;
+//        }
+//        OnResourceChanged?.Invoke();
+//    }
+
+//    public bool CanAfford(ResourceCost cost)
+//    {
+//        return food >= cost.food
+//            && wood >= cost.wood
+//            && stone >= cost.stone
+//            && silver >= cost.silver
+//            && gold >= cost.gold;
+//    }
+
+//    public void Deduct(ResourceCost cost)
+//    {
+//        food -= cost.food;
+//        wood -= cost.wood;
+//        stone -= cost.stone;
+//        silver -= cost.silver;
+//        gold -= cost.gold;
+//        OnResourceChanged?.Invoke();
+//    }
+//}
+#endregion
+
+#region Phase 2 Sprint 7 - Resource Manager With Food Production Multiplier
 using UnityEngine;
 using System;
 
@@ -449,6 +558,8 @@ public class ResourceManager : MonoBehaviour
 
     private const float tickIntervalSeconds = 60f;
     private float tickTimer;
+
+    public float foodProductionMultiplier = 1f;
 
     public event Action OnResourceChanged;
 
@@ -492,7 +603,7 @@ public class ResourceManager : MonoBehaviour
 
             switch (b.config.buildingType)
             {
-                case BuildingType.Farm: Add(ResourceType.Food, amountPerTick); break;
+                case BuildingType.Farm: Add(ResourceType.Food, amountPerTick * foodProductionMultiplier); break;
                 case BuildingType.LumberMill: Add(ResourceType.Wood, amountPerTick); break;
                 case BuildingType.Quarry: Add(ResourceType.Stone, amountPerTick); break;
                 case BuildingType.SilverMine: Add(ResourceType.Silver, amountPerTick); break;
