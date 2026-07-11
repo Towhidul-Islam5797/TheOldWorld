@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dae4c8b3b86ec50489057ab7b28d6ad8, type: 3}
+  m_Name: Forge_Config
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingConfig
+  buildingName: Forge
+  buildingType: 7
+  placementCost:
+    food: 0
+    wood: 120
+    stone: 100
+    silver: 0
+  footprintWidth: 3
+  footprintHeight: 3
+  levels:
+  - sprite: {fileID: 21300000, guid: dae7bc2f37bed2c49914d697e7451f10, type: 3}
+    upgradeTimeSeconds: 120
+    upgradeCost:
+      food: 0
+      wood: 200
+      stone: 200
+      silver: 100
+    productionPerHour: 0
+  - sprite: {fileID: 21300000, guid: 220e74c338b1c3740afdc09591da7340, type: 3}
+    upgradeTimeSeconds: 240
+    upgradeCost:
+      food: 0
+      wood: 400
+      stone: 400
+      silver: 200
+    productionPerHour: 0
+  - sprite: {fileID: 21300000, guid: fbe9b05085d61594e828f2a33c56cebc, type: 3}
+    upgradeTimeSeconds: 480
+    upgradeCost:
+      food: 0
+      wood: 0
+      stone: 0
+      silver: 0
+    productionPerHour: 0

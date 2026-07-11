@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c8c5c8e258a8de46a0ccda18f3cd272, type: 3}
+  m_Name: Siege_Config
+  m_EditorClassIdentifier: Assembly-CSharp::TroopConfig
+  troopName: Siege
+  troopType: 3
+  requiredBarracksLevel: 4
+  trainingCostPerUnit:
+    food: 0
+    wood: 50
+    stone: 80
+    silver: 20
+    gold: 0
+  trainingTimeSecondsPerUnit: 90
+  levels:
+  - icon: {fileID: 21300000, guid: 7e8cd0b148b04984ebc619ce752b4924, type: 3}
+    baseAttack: 18
+    baseDefense: 5
+    baseHealth: 8
+  - icon: {fileID: 21300000, guid: 4e1c79a212df9104080b24a75d5de0cb, type: 3}
+    baseAttack: 28
+    baseDefense: 8
+    baseHealth: 13
+  - icon: {fileID: 21300000, guid: 91a13e7461c5a8f448754847c14e767d, type: 3}
+    baseAttack: 45
+    baseDefense: 12
+    baseHealth: 20
+  - icon: {fileID: 0}
+    baseAttack: 42
+    baseDefense: 20
+    baseHealth: 32

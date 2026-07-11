@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dae4c8b3b86ec50489057ab7b28d6ad8, type: 3}
+  m_Name: SilverMine_Config
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingConfig
+  buildingName: Silver mine
+  buildingType: 5
+  placementCost:
+    food: 0
+    wood: 50
+    stone: 50
+    silver: 0
+    gold: 0
+  footprintWidth: 3
+  footprintHeight: 3
+  levels:
+  - sprite: {fileID: 21300000, guid: f416585b928f333458a28af5056353d9, type: 3}
+    upgradeTimeSeconds: 30
+    upgradeCost:
+      food: 0
+      wood: 100
+      stone: 100
+      silver: 0
+      gold: 0
+    productionPerHour: 30
+  - sprite: {fileID: 21300000, guid: 5d8f6c6899533694c99cf8d2f6e71374, type: 3}
+    upgradeTimeSeconds: 60
+    upgradeCost:
+      food: 0
+      wood: 200
+      stone: 200
+      silver: 0
+      gold: 0
+    productionPerHour: 50
+  - sprite: {fileID: 21300000, guid: a7d6c7283817bad47bead94e289d0586, type: 3}
+    upgradeTimeSeconds: 120
+    upgradeCost:
+      food: 0
+      wood: 0
+      stone: 0
+      silver: 0
+      gold: 0
+    productionPerHour: 70

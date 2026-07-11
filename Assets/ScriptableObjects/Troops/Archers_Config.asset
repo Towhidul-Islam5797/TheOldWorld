@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c8c5c8e258a8de46a0ccda18f3cd272, type: 3}
+  m_Name: Archers_Config
+  m_EditorClassIdentifier: Assembly-CSharp::TroopConfig
+  troopName: Archers
+  troopType: 1
+  requiredBarracksLevel: 2
+  trainingCostPerUnit:
+    food: 30
+    wood: 40
+    stone: 0
+    silver: 10
+    gold: 0
+  trainingTimeSecondsPerUnit: 25
+  levels:
+  - icon: {fileID: 21300000, guid: ace8763164acc9745acceace3ab546cb, type: 3}
+    baseAttack: 12
+    baseDefense: 8
+    baseHealth: 12
+  - icon: {fileID: 21300000, guid: f24a0f6f45d5a4e45b63bd0fe32f895f, type: 3}
+    baseAttack: 19
+    baseDefense: 12
+    baseHealth: 19
+  - icon: {fileID: 21300000, guid: 19c850afc72bd6446a18940039ab2113, type: 3}
+    baseAttack: 30
+    baseDefense: 20
+    baseHealth: 30
+  - icon: {fileID: 21300000, guid: 30d461f523bd85b44960c83862f9c1c0, type: 3}
+    baseAttack: 58
+    baseDefense: 42
+    baseHealth: 58
