@@ -353,7 +353,7 @@
 //        }
 //    }
 
-//    // Page 2 dedicated Back button — wired via Inspector OnClick
+//    // Page 2 dedicated Back button ï¿½ wired via Inspector OnClick
 //    public void OnBackClicked()
 //    {
 //        ShowPage1();
@@ -420,13 +420,30 @@ public class BuildingPopup : MonoBehaviour
         Hide();
     }
 
-    void Update()
-    {
-        if (currentBuilding == null) return;
-        Vector3 screenPos = Camera.main.WorldToScreenPoint(anchorWorldPos);
-        popupRectTransform.position = screenPos + new Vector3(0, popupYOffset, 0);
-        RefreshButtons();
-    }
+void Update()
+{
+    if (currentBuilding == null) return;
+
+    Vector3 screenPos = Camera.main.WorldToScreenPoint(anchorWorldPos);
+
+    // Start with the desired position (above the building)
+    Vector3 desiredPos = screenPos + new Vector3(0, popupYOffset, 0);
+
+    // Get the popup's half-size in screen space
+    Vector2 halfSize = new Vector2(
+        popupRectTransform.rect.width  * popupRectTransform.lossyScale.x * 0.5f,
+        popupRectTransform.rect.height * popupRectTransform.lossyScale.y * 0.5f
+    );
+
+    // Clamp so the popup always stays fully inside the screen
+    float clampedX = Mathf.Clamp(desiredPos.x, halfSize.x, Screen.width  - halfSize.x);
+    float clampedY = Mathf.Clamp(desiredPos.y, halfSize.y, Screen.height - halfSize.y);
+
+    popupRectTransform.position = new Vector3(clampedX, clampedY, desiredPos.z);
+
+    RefreshButtons();
+}
+
 
     public void Show(BuildingState building, Vector3 worldPos)
     {
