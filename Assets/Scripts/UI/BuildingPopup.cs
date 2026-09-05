@@ -560,7 +560,9 @@ void Update()
                 TrainingPopup.Instance.Show(barracks);
                 break;
             case BuildingType.Academy:
-                Debug.Log("Open Research panel");
+                BuildingState academy = currentBuilding;
+                Hide();
+                ResearchPopup.Instance.Show(academy);
                 break;
             case BuildingType.Forge:
                 BuildingState forge = currentBuilding;
