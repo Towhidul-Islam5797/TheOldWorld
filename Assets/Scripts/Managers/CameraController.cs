@@ -463,7 +463,151 @@
 #endregion
 
 #region Phase 2 Sprint 2 - Camera With Padding and HUD Offset
+//using UnityEngine;
+
+//public class CameraController : MonoBehaviour
+//{
+//    [Header("Zoom")]
+//    [SerializeField] private float zoomSpeed = 0.1f;
+//    [SerializeField] private float minZoom = 2f;
+//    [SerializeField] private float maxZoom = 20f;
+//    [SerializeField] private float startZoom = 8f;
+
+//    [Header("Smoothing")]
+//    [SerializeField] private float smoothing = 10f;
+
+//    [Header("HUD Offset")]
+//    [SerializeField] private float hudOffsetY = -0.5f;
+
+//    [Header("Bounds Padding")]
+//    [SerializeField] private float paddingX = 5f;
+//    [SerializeField] private float paddingY = 3f;
+
+//    public bool IsDragging => isDragging;
+
+//    private Camera cam;
+//    private TileGridRenderer gridRenderer;
+//    private Vector3 dragOrigin;
+//    private bool isDragging;
+//    private Vector3 targetPosition;
+//    private float targetZoom;
+
+//    private float boundsMinX;
+//    private float boundsMaxX;
+//    private float boundsMinY;
+//    private float boundsMaxY;
+
+//    void Start()
+//    {
+//        cam = GetComponent<Camera>();
+//        gridRenderer = FindFirstObjectByType<TileGridRenderer>();
+
+//        CalculateBounds();
+
+//        float centerX = (boundsMinX + boundsMaxX) * 0.5f;
+//        float centerY = (boundsMinY + boundsMaxY) * 0.5f + hudOffsetY;
+
+//        transform.position = new Vector3(centerX, centerY, transform.position.z);
+//        targetPosition = transform.position;
+//        targetZoom = startZoom;
+//        cam.orthographicSize = startZoom;
+//    }
+
+//    void Update()
+//    {
+//        HandlePan();
+//        HandleZoom();
+//        ApplySmoothing();
+//    }
+
+//    void CalculateBounds()
+//    {
+//        if (gridRenderer == null)
+//        {
+//            boundsMinX = -10f;
+//            boundsMaxX = 10f;
+//            boundsMinY = 0f;
+//            boundsMaxY = 10f;
+//            return;
+//        }
+
+//        Vector3 bottomTip = gridRenderer.GridToWorld(0, 0);
+//        Vector3 topTip = gridRenderer.GridToWorld(gridRenderer.GridWidth - 1, gridRenderer.GridHeight - 1);
+//        Vector3 leftTip = gridRenderer.GridToWorld(0, gridRenderer.GridHeight - 1);
+//        Vector3 rightTip = gridRenderer.GridToWorld(gridRenderer.GridWidth - 1, 0);
+
+//        // Add padding so the camera can pan slightly beyond the grid edges
+//        boundsMinX = leftTip.x - paddingX;
+//        boundsMaxX = rightTip.x + paddingX;
+//        boundsMinY = bottomTip.y - paddingY;
+//        boundsMaxY = topTip.y + paddingY;
+//    }
+
+//    void HandlePan()
+//    {
+//        if (Input.GetMouseButtonDown(0))
+//        {
+//            dragOrigin = cam.ScreenToWorldPoint(Input.mousePosition);
+//            isDragging = false;
+//        }
+
+//        if (Input.GetMouseButton(0))
+//        {
+//            Vector3 currentWorldPos = cam.ScreenToWorldPoint(Input.mousePosition);
+//            Vector3 delta = dragOrigin - currentWorldPos;
+
+//            if (delta.magnitude > 0.01f)
+//                isDragging = true;
+
+//            if (isDragging)
+//            {
+//                targetPosition += delta;
+//                ClampTarget();
+//            }
+//        }
+
+//        if (Input.GetMouseButtonUp(0))
+//            isDragging = false;
+//    }
+
+//    void HandleZoom()
+//    {
+//        float scroll = Input.GetAxis("Mouse ScrollWheel");
+//        if (Mathf.Abs(scroll) < 0.001f) return;
+
+//        targetZoom -= scroll * zoomSpeed * targetZoom;
+//        targetZoom = Mathf.Clamp(targetZoom, minZoom, maxZoom);
+//        ClampTarget();
+//    }
+
+//    void ApplySmoothing()
+//    {
+//        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * smoothing);
+//        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoom, Time.deltaTime * smoothing);
+//    }
+
+//    void ClampTarget()
+//    {
+//        float camHalfH = targetZoom;
+//        float camHalfW = targetZoom * cam.aspect;
+
+//        float clampedX = Mathf.Clamp(targetPosition.x, boundsMinX + camHalfW, boundsMaxX - camHalfW);
+//        float clampedY = Mathf.Clamp(targetPosition.y, boundsMinY + camHalfH, boundsMaxY - camHalfH);
+
+//        if (boundsMaxX - boundsMinX < camHalfW * 2f)
+//            clampedX = (boundsMinX + boundsMaxX) * 0.5f;
+
+//        if (boundsMaxY - boundsMinY < camHalfH * 2f)
+//            clampedY = (boundsMinY + boundsMaxY) * 0.5f;
+
+//        targetPosition = new Vector3(clampedX, clampedY, targetPosition.z);
+//    }
+//}
+#endregion
+
+#region Phase 2 Sprint 2 - Camera With Padding and HUD Offset
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
@@ -545,15 +689,17 @@ public class CameraController : MonoBehaviour
 
     void HandlePan()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Mouse.current == null) return;
+
+        if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            dragOrigin = cam.ScreenToWorldPoint(Input.mousePosition);
+            dragOrigin = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             isDragging = false;
         }
 
-        if (Input.GetMouseButton(0))
+        if (Mouse.current.leftButton.isPressed)
         {
-            Vector3 currentWorldPos = cam.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 currentWorldPos = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             Vector3 delta = dragOrigin - currentWorldPos;
 
             if (delta.magnitude > 0.01f)
@@ -566,16 +712,18 @@ public class CameraController : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (Mouse.current.leftButton.wasReleasedThisFrame)
             isDragging = false;
     }
 
     void HandleZoom()
     {
-        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        if (Mouse.current == null) return;
+
+        float scroll = Mouse.current.scroll.ReadValue().y;
         if (Mathf.Abs(scroll) < 0.001f) return;
 
-        targetZoom -= scroll * zoomSpeed * targetZoom;
+        targetZoom -= scroll * zoomSpeed * targetZoom * 0.01f;
         targetZoom = Mathf.Clamp(targetZoom, minZoom, maxZoom);
         ClampTarget();
     }
